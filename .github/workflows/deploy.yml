@@ -1,0 +1,53 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Admin saves can land in quick succession; only the newest one needs to deploy.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Figma Make's GitHub sync exports the project without a lockfile, so
+      # support both layouts.
+      - name: Install dependencies
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            corepack enable
+            pnpm install --frozen-lockfile
+          else
+            npm install --no-audit --no-fund
+          fi
+      - name: Build
+        # `<owner>.github.io` repos are served from the domain root; others from /<repo>/.
+        run: |
+          REPO_NAME="${{ github.event.repository.name }}"
+          case "$REPO_NAME" in
+            *.github.io) BASE=/ ;;
+            *) BASE="/$REPO_NAME/" ;;
+          esac
+          npm run build -- --base="$BASE"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4
