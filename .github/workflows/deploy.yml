@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: |
           if [ -f pnpm-lock.yaml ]; then
-            corepack enable
+            npm install -g pnpm@10
             pnpm install --frozen-lockfile
           else
             npm install --no-audit --no-fund
