@@ -1,0 +1,389 @@
+{
+  "settings": {
+    "updatedAt": "2026-04-03T07:10:30.403Z",
+    "adminEmail": "",
+    "accentColor": "#2fce2c",
+    "organizationLogo": "assets/organization/db7a401e-6251-4a1d-b178-9deec702db0f.jpg",
+    "organizationName": "Ollyo Brand Assets"
+  },
+  "products": [
+    {
+      "id": "2fa4d66b-05d1-418f-83a3-aa52d208e1fb",
+      "name": "JoomShaper",
+      "assets": {
+        "logos": [
+          {
+            "id": "logo-0",
+            "png": "assets/joomshaper/49131b6a-2d6d-452b-a71f-b7f999fd6682.svg",
+            "svg": "assets/joomshaper/49131b6a-2d6d-452b-a71f-b7f999fd6682.svg",
+            "name": "Horizontal Logo",
+            "preview": "assets/joomshaper/49131b6a-2d6d-452b-a71f-b7f999fd6682.svg",
+            "variant": "Horizontal"
+          },
+          {
+            "id": "logo-1",
+            "png": "assets/joomshaper/d1a025e1-f114-4f30-8a70-04068c27800c.png",
+            "svg": "assets/joomshaper/d1a025e1-f114-4f30-8a70-04068c27800c.png",
+            "name": "Dark Logo",
+            "preview": "assets/joomshaper/d1a025e1-f114-4f30-8a70-04068c27800c.png",
+            "variant": "Dark"
+          },
+          {
+            "id": "logo-1776238968534-0",
+            "png": "assets/joomshaper/c9d3d371-87a5-428b-913f-d925e8d93591.svg",
+            "svg": "assets/joomshaper/c9d3d371-87a5-428b-913f-d925e8d93591.svg",
+            "name": "Icon",
+            "preview": "assets/joomshaper/c9d3d371-87a5-428b-913f-d925e8d93591.svg",
+            "variant": "Icon"
+          }
+        ],
+        "colors": [
+          {
+            "hex": "#0E1DEC",
+            "rgb": "rgb(14, 29, 236)",
+            "name": "Primary"
+          },
+          {
+            "hex": "#3071FF",
+            "rgb": "rgb(48, 113, 255)",
+            "name": "Secondary"
+          },
+          {
+            "hex": "#FF7416",
+            "rgb": "rgb(255, 116, 22)",
+            "name": "Secondary"
+          },
+          {
+            "hex": "#6DE8BD",
+            "rgb": "rgb(109, 232, 189)",
+            "name": "Secondary"
+          }
+        ],
+        "favicon": {
+          "ico": "assets/joomshaper/ca0069e6-a6f9-468b-a13f-276630f5598a.svg",
+          "png": "assets/joomshaper/ca0069e6-a6f9-468b-a13f-276630f5598a.svg",
+          "svg": "assets/joomshaper/ca0069e6-a6f9-468b-a13f-276630f5598a.svg",
+          "preview": "assets/joomshaper/ca0069e6-a6f9-468b-a13f-276630f5598a.svg"
+        }
+      },
+      "logoUrl": "assets/joomshaper/8639c129-fa9f-40d7-97fc-15793eb9aa29.svg",
+      "tagline": "Grow your business with the world\u2019s #1 tools for Joomla!",
+      "createdAt": "2026-04-15T07:10:44.079Z",
+      "updatedAt": "2026-04-15T07:42:49.289Z"
+    },
+    {
+      "id": "632c3fb2-4468-4e91-8d57-82dc0c38ad43",
+      "name": "Growfund",
+      "assets": {
+        "logos": [
+          {
+            "id": "logo-0",
+            "png": "assets/growfund/e2a657af-da05-4a86-831b-0aa29e584608.svg",
+            "svg": "assets/growfund/e2a657af-da05-4a86-831b-0aa29e584608.svg",
+            "name": "Horizontal Logo",
+            "preview": "assets/growfund/e2a657af-da05-4a86-831b-0aa29e584608.svg",
+            "variant": "Horizontal"
+          },
+          {
+            "id": "logo-1776239011536-0",
+            "png": "assets/growfund/450ceffb-5e78-4410-80cf-f8684bc0520f.svg",
+            "svg": "assets/growfund/450ceffb-5e78-4410-80cf-f8684bc0520f.svg",
+            "name": "Icon",
+            "preview": "assets/growfund/450ceffb-5e78-4410-80cf-f8684bc0520f.svg",
+            "variant": "Icon"
+          }
+        ],
+        "colors": [
+          {
+            "hex": "#179647",
+            "rgb": "rgb(23, 150, 71)",
+            "name": "Primary 1"
+          },
+          {
+            "hex": "#A7F042",
+            "rgb": "rgb(167, 240, 66)",
+            "name": "Primary 2"
+          },
+          {
+            "hex": "#FF6600",
+            "rgb": "rgb(255, 102, 0)",
+            "name": "Accent"
+          },
+          {
+            "hex": "#AE80FF",
+            "rgb": "rgb(174, 128, 255)",
+            "name": "Neutral"
+          }
+        ],
+        "favicon": {
+          "ico": "assets/growfund/27fbdf11-06a8-4280-b407-8b206b8070cd.svg",
+          "png": "assets/growfund/27fbdf11-06a8-4280-b407-8b206b8070cd.svg",
+          "svg": "assets/growfund/27fbdf11-06a8-4280-b407-8b206b8070cd.svg",
+          "preview": "assets/growfund/27fbdf11-06a8-4280-b407-8b206b8070cd.svg"
+        }
+      },
+      "logoUrl": "assets/growfund/7580d925-22fb-4e0c-94c7-124e1d8e4f96.svg",
+      "tagline": "The complete donation crowdfunding solution for WordPress",
+      "createdAt": "2026-04-15T07:24:54.598Z",
+      "updatedAt": "2026-04-15T08:08:44.394Z"
+    },
+    {
+      "id": "21278f71-59ee-4c33-87a7-3adabb8b4879",
+      "name": "Tutor LMS",
+      "assets": {
+        "logos": [
+          {
+            "id": "logo-0",
+            "png": "assets/tutor-lms/5704dabd-c507-4319-8584-2f8317feb78d.svg",
+            "svg": "assets/tutor-lms/5704dabd-c507-4319-8584-2f8317feb78d.svg",
+            "name": "Horizontal Logo",
+            "preview": "assets/tutor-lms/5704dabd-c507-4319-8584-2f8317feb78d.svg",
+            "variant": "Horizontal "
+          },
+          {
+            "id": "logo-1",
+            "png": "assets/tutor-lms/0da487b0-1e86-48ee-ab00-f42820072128.svg",
+            "svg": "assets/tutor-lms/0da487b0-1e86-48ee-ab00-f42820072128.svg",
+            "name": "Dark logo",
+            "preview": "assets/tutor-lms/0da487b0-1e86-48ee-ab00-f42820072128.svg",
+            "variant": "Dark"
+          },
+          {
+            "id": "logo-1776238902480-0",
+            "png": "assets/tutor-lms/5dbf46f1-6fac-4e0d-8654-9962776c8cca.svg",
+            "svg": "assets/tutor-lms/5dbf46f1-6fac-4e0d-8654-9962776c8cca.svg",
+            "name": "Icon",
+            "preview": "assets/tutor-lms/5dbf46f1-6fac-4e0d-8654-9962776c8cca.svg",
+            "variant": "Icon "
+          }
+        ],
+        "colors": [
+          {
+            "hex": "#2151ED",
+            "rgb": "rgb(33, 81, 237)",
+            "name": "Primary"
+          },
+          {
+            "hex": "#FFAA01",
+            "rgb": "rgb(255, 170, 1)",
+            "name": "Secondary"
+          },
+          {
+            "hex": "#009354",
+            "rgb": "rgb(0, 147, 84)",
+            "name": "Secondary"
+          },
+          {
+            "hex": "#7C5BFF",
+            "rgb": "rgb(124, 91, 255)",
+            "name": "Secondary"
+          },
+          {
+            "hex": "#FF6575",
+            "rgb": "rgb(255, 101, 117)",
+            "name": "Secondary"
+          }
+        ],
+        "favicon": {
+          "ico": "assets/tutor-lms/ece0624a-523a-4d14-94ea-dffe83207a5d.svg",
+          "png": "assets/tutor-lms/ece0624a-523a-4d14-94ea-dffe83207a5d.svg",
+          "svg": "assets/tutor-lms/ece0624a-523a-4d14-94ea-dffe83207a5d.svg",
+          "preview": "assets/tutor-lms/ece0624a-523a-4d14-94ea-dffe83207a5d.svg"
+        }
+      },
+      "logoUrl": "assets/tutor-lms/77c8a678-a49f-4020-991e-6cc933d16049.svg",
+      "tagline": "eLearning solution that works for you",
+      "createdAt": "2026-04-15T07:41:04.135Z",
+      "updatedAt": "2026-04-15T07:41:43.701Z"
+    },
+    {
+      "id": "b8d6ee11-a717-4d91-8371-370d763dd82c",
+      "name": "Kirki",
+      "assets": {
+        "logos": [
+          {
+            "id": "logo-0",
+            "png": "assets/kirki/feeeab35-0c0a-4bb0-b92d-6d727557f401.svg",
+            "svg": "assets/kirki/feeeab35-0c0a-4bb0-b92d-6d727557f401.svg",
+            "name": "Horizontal Logo",
+            "preview": "assets/kirki/feeeab35-0c0a-4bb0-b92d-6d727557f401.svg",
+            "variant": "Horizontal"
+          },
+          {
+            "id": "logo-1",
+            "png": "assets/kirki/156719c6-c4fc-4e12-bf8c-8b29815f7353.svg",
+            "svg": "assets/kirki/156719c6-c4fc-4e12-bf8c-8b29815f7353.svg",
+            "name": "Dark Logo",
+            "preview": "assets/kirki/156719c6-c4fc-4e12-bf8c-8b29815f7353.svg",
+            "variant": "Dark"
+          },
+          {
+            "id": "logo-2",
+            "png": "assets/kirki/c44fed4a-5b5e-465c-bba2-c29b91c02f1e.svg",
+            "svg": "assets/kirki/c44fed4a-5b5e-465c-bba2-c29b91c02f1e.svg",
+            "name": "Icon ",
+            "preview": "assets/kirki/c44fed4a-5b5e-465c-bba2-c29b91c02f1e.svg",
+            "variant": "Icon "
+          }
+        ],
+        "colors": [
+          {
+            "hex": "#5641F3",
+            "name": "Primary"
+          },
+          {
+            "hex": "#33B033",
+            "name": "Secondary"
+          }
+        ],
+        "favicon": {
+          "ico": "assets/kirki/238c2dfe-62d0-4ed9-bfcb-3b2a86f16477.svg",
+          "png": "assets/kirki/238c2dfe-62d0-4ed9-bfcb-3b2a86f16477.svg",
+          "svg": "assets/kirki/238c2dfe-62d0-4ed9-bfcb-3b2a86f16477.svg",
+          "preview": "assets/kirki/238c2dfe-62d0-4ed9-bfcb-3b2a86f16477.svg"
+        }
+      },
+      "logoUrl": "assets/kirki/4313f0d4-5006-48e7-a2ac-a5f98409a681.svg",
+      "tagline": "No-Code Site Builder for WordPress",
+      "createdAt": "2026-04-15T07:57:33.769Z"
+    },
+    {
+      "id": "f6be7331-6951-4256-8d0f-7c4602cdc1cb",
+      "name": "SP Page Builder",
+      "assets": {
+        "logos": [
+          {
+            "id": "logo-1776246796075",
+            "png": "assets/sp-page-builder/08d122e5-6e5b-49bb-af7f-d4241622f96d.svg",
+            "svg": "assets/sp-page-builder/08d122e5-6e5b-49bb-af7f-d4241622f96d.svg",
+            "name": "Horizontal Logo",
+            "preview": "assets/sp-page-builder/08d122e5-6e5b-49bb-af7f-d4241622f96d.svg",
+            "variant": "Horizontal"
+          },
+          {
+            "id": "logo-1776246824649",
+            "png": "assets/sp-page-builder/36acd896-e185-4916-be14-769b079c61c7.svg",
+            "svg": "assets/sp-page-builder/36acd896-e185-4916-be14-769b079c61c7.svg",
+            "name": "Dark Logo",
+            "preview": "assets/sp-page-builder/36acd896-e185-4916-be14-769b079c61c7.svg",
+            "variant": "Dark"
+          },
+          {
+            "id": "logo-1776246844822",
+            "png": "assets/sp-page-builder/b90c954b-86a8-4223-bbbc-06551a632522.svg",
+            "svg": "assets/sp-page-builder/b90c954b-86a8-4223-bbbc-06551a632522.svg",
+            "name": "Icon",
+            "preview": "assets/sp-page-builder/b90c954b-86a8-4223-bbbc-06551a632522.svg",
+            "variant": "Icon"
+          }
+        ],
+        "colors": [
+          {
+            "hex": "#2684FF",
+            "rgb": "rgb(38, 132, 255)",
+            "name": "Primary"
+          },
+          {
+            "hex": "#0EE8B1",
+            "rgb": "rgb(14, 232, 177)",
+            "name": "Secondary"
+          },
+          {
+            "hex": "#FF7416",
+            "rgb": "rgb(255, 116, 22)",
+            "name": "Secondary"
+          }
+        ],
+        "favicon": {
+          "ico": "assets/sp-page-builder/1212ed90-5688-4190-a3b3-066be159ab34.svg",
+          "png": "assets/sp-page-builder/1212ed90-5688-4190-a3b3-066be159ab34.svg",
+          "svg": "assets/sp-page-builder/1212ed90-5688-4190-a3b3-066be159ab34.svg",
+          "preview": "assets/sp-page-builder/1212ed90-5688-4190-a3b3-066be159ab34.svg"
+        }
+      },
+      "logoUrl": "assets/sp-page-builder/d49ebc0f-63c7-499b-97b5-a21f10abaa2a.svg",
+      "tagline": "An extremely powerful drag & drop tool that lets you build sites visually and instantly.",
+      "createdAt": "2026-04-15T08:05:16.424Z",
+      "updatedAt": "2026-04-15T09:56:35.298Z"
+    },
+    {
+      "id": "9d257920-c65f-4859-8f9b-2a408e9de164",
+      "name": "EasyStore",
+      "assets": {
+        "logos": [
+          {
+            "id": "logo-1776247232871",
+            "png": "assets/easystore/6dcd973a-c2a3-4dde-b2e5-c23984d2cae0.svg",
+            "svg": "assets/easystore/6dcd973a-c2a3-4dde-b2e5-c23984d2cae0.svg",
+            "name": "Horizontal Logo",
+            "preview": "assets/easystore/6dcd973a-c2a3-4dde-b2e5-c23984d2cae0.svg",
+            "variant": "Horizontal"
+          },
+          {
+            "id": "logo-1776247247543",
+            "png": "assets/easystore/7d2e1623-394a-4771-9f16-f12aaadb8af6.svg",
+            "svg": "assets/easystore/7d2e1623-394a-4771-9f16-f12aaadb8af6.svg",
+            "name": "Dark Logo",
+            "preview": "assets/easystore/7d2e1623-394a-4771-9f16-f12aaadb8af6.svg",
+            "variant": "Dark"
+          },
+          {
+            "id": "logo-1776247265048",
+            "png": "assets/easystore/d1a7a9b8-dc9a-48e2-9cc2-ed3163af964e.svg",
+            "svg": "assets/easystore/d1a7a9b8-dc9a-48e2-9cc2-ed3163af964e.svg",
+            "name": "Icon",
+            "preview": "assets/easystore/d1a7a9b8-dc9a-48e2-9cc2-ed3163af964e.svg",
+            "variant": "Icon"
+          }
+        ],
+        "colors": [
+          {
+            "hex": "#046151",
+            "rgb": "rgb(4, 97, 81)",
+            "name": "Primary"
+          },
+          {
+            "hex": "#FFEB98",
+            "rgb": "rgb(255, 235, 152)",
+            "name": "Primary"
+          },
+          {
+            "hex": "#A6F021",
+            "rgb": "rgb(166, 240, 33)",
+            "name": "Secondary"
+          },
+          {
+            "hex": "#9E6FEF",
+            "rgb": "rgb(158, 111, 239)",
+            "name": "Secondary"
+          },
+          {
+            "hex": "#FFD752",
+            "rgb": "rgb(255, 215, 82)",
+            "name": "Primary"
+          },
+          {
+            "hex": "#FEF6E3",
+            "rgb": "rgb(254, 246, 227)",
+            "name": "Primary"
+          },
+          {
+            "hex": "#000000",
+            "rgb": "rgb(0, 0, 0)",
+            "name": "Primary"
+          }
+        ],
+        "favicon": {
+          "ico": "assets/easystore/974033f3-ad17-4e46-9f6c-565558dd7c34.svg",
+          "png": "assets/easystore/974033f3-ad17-4e46-9f6c-565558dd7c34.svg",
+          "svg": "assets/easystore/974033f3-ad17-4e46-9f6c-565558dd7c34.svg",
+          "preview": "assets/easystore/974033f3-ad17-4e46-9f6c-565558dd7c34.svg"
+        }
+      },
+      "logoUrl": "assets/easystore/4372f83d-a040-4bc0-a514-e1341921a7ed.svg",
+      "tagline": "The Ultimate eCommerce Extension for Joomla",
+      "createdAt": "2026-04-15T09:58:39.313Z",
+      "updatedAt": "2026-04-15T10:16:31.669Z"
+    }
+  ]
+}
