@@ -78,7 +78,7 @@ export function colourLabels(colors: Color[]): string[] {
   colors.forEach((c) => totals.set(c.name.trim(), (totals.get(c.name.trim()) || 0) + 1));
   const seen = new Map<string, number>();
   return colors.map((c) => {
-    const name = c.name.trim() || 'Colour';
+    const name = c.name.trim() || 'Color';
     if ((totals.get(c.name.trim()) || 0) < 2) return name;
     const n = (seen.get(name) || 0) + 1;
     seen.set(name, n);
@@ -110,7 +110,7 @@ export function logoOriginal(logo: Logo): { path: string; ext: string } | null {
 export function countLine(product: Product): string {
   const logos = product.assets.logos?.length || 0;
   const colours = product.assets.colors?.length || 0;
-  const parts = [`${logos} ${logos === 1 ? 'logo' : 'logos'}`, `${colours} ${colours === 1 ? 'colour' : 'colours'}`];
+  const parts = [`${logos} ${logos === 1 ? 'logo' : 'logos'}`, `${colours} ${colours === 1 ? 'color' : 'colors'}`];
   return parts.join(' · ');
 }
 
@@ -156,7 +156,7 @@ export function search(products: Product[], query: string): Match[] {
 export function tabsFor(product: Product): { id: Tab; label: string; count: number }[] {
   const tabs: { id: Tab; label: string; count: number }[] = [
     { id: 'logos', label: 'Logos', count: product.assets.logos?.length || 0 },
-    { id: 'colours', label: 'Colours', count: product.assets.colors?.length || 0 },
+    { id: 'colours', label: 'Colors', count: product.assets.colors?.length || 0 },
   ];
   if (product.assets.favicon) tabs.push({ id: 'favicon', label: 'Favicon', count: 1 });
   if (product.assets.guidelines?.pdf || product.assets.guidelines?.preview) tabs.push({ id: 'guidelines', label: 'Guidelines', count: 1 });

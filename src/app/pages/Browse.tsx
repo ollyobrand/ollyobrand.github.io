@@ -93,12 +93,33 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
   const tabs = admin
     ? [
         { id: 'logos' as Tab, label: 'Logos', count: product.assets.logos?.length || 0 },
-        { id: 'colours' as Tab, label: 'Colours', count: product.assets.colors?.length || 0 },
+        { id: 'colours' as Tab, label: 'Colors', count: product.assets.colors?.length || 0 },
         { id: 'favicon' as Tab, label: 'Favicon', count: product.assets.favicon ? 1 : 0 },
-        { id: 'guidelines' as Tab, label: 'Guides', count: product.assets.guidelines ? 1 : 0 },
+        { id: 'guidelines' as Tab, label: 'Guidelines', count: product.assets.guidelines ? 1 : 0 },
       ]
     : tabsFor(product);
-  const active = tabs.some((t) => t.id === tab) ? tab : 'logos';
+  const has = (id: Tab) => tabs.some((t) => t.id === id);
+  const heading = (id: Tab) => {
+    const t = tabs.find((x) => x.id === id)!;
+    return (
+      <h3 className="sb-section-title" id={`h-${id}`}>
+        {t.label}
+        <span className="sb-mono">{t.count}</span>
+      </h3>
+    );
+  };
+  // Links like #/kirki/colours scroll to that section; a new product starts at the top.
+  const paneRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const pane = paneRef.current;
+    if (!pane) return;
+    const target = tab !== 'logos' ? pane.querySelector<HTMLElement>(`#sec-${tab}`) : null;
+    const t = window.setTimeout(() => {
+      if (target) pane.scrollTo({ top: target.offsetTop - pane.offsetTop - 8, behavior: 'smooth' });
+      else pane.scrollTo({ top: 0 });
+    }, 60);
+    return () => window.clearTimeout(t);
+  }, [tab, product.id]);
   const [busy, setBusy] = useState(false);
   const [copied, setCopied] = useState<number | null>(null);
   const labels = colourLabels(product.assets.colors || []);
@@ -183,18 +204,11 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
         </div>
       )}
 
-      <div className="sb-tabs" role="tablist" aria-label="Asset type">
-        {tabs.map((t) => (
-          <button key={t.id} role="tab" id={`tab-${t.id}`} aria-selected={active === t.id} aria-controls="sb-pane" onClick={() => onTab(t.id)}>
-            {t.label}
-            <span className="sb-mono">{t.count}</span>
-          </button>
-        ))}
-      </div>
-
-      <div className="sb-pane" id="sb-pane" role="tabpanel" aria-labelledby={`tab-${active}`}>
-        {active === 'logos' &&
-          (product.assets.logos?.length || admin ? (
+      <div className="sb-pane" ref={paneRef}>
+        {has('logos') && (
+        <section className="sb-section" id="sec-logos" aria-labelledby="h-logos">
+          {heading('logos')}
+          {product.assets.logos?.length || admin ? (
             <div className="sb-grid">
               {(product.assets.logos || []).map((logo) => {
                 const original = logoOriginal(logo);
@@ -223,10 +237,14 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
             </div>
           ) : (
             <p className="sb-empty">No logos for {product.name} yet.</p>
-          ))}
+          )}
+        </section>
+        )}
 
-        {active === 'colours' &&
-          (product.assets.colors?.length || admin ? (
+        {has('colours') && (
+        <section className="sb-section" id="sec-colours" aria-labelledby="h-colours">
+          {heading('colours')}
+          {product.assets.colors?.length || admin ? (
             <>
               <div className="sb-swatches">
                 {product.assets.colors.map((c, i) => {
@@ -253,7 +271,7 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
                       </span>
                       <span className="sb-chip-name">{labels[i]}</span>
                       <span className="sb-stamp">Copied</span>
-                      {admin && labels[i] !== c.name.trim() && <span className="sb-dupe">Same name as another colour</span>}
+                      {admin && labels[i] !== c.name.trim() && <span className="sb-dupe">Same name as another color</span>}
                     </button>
                   );
                   return admin ? (
@@ -284,10 +302,15 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
               </div>
             </>
           ) : (
-            <p className="sb-empty">No colours for {product.name} yet.</p>
-          ))}
+            <p className="sb-empty">No colors for {product.name} yet.</p>
+          )}
+        </section>
+        )}
 
-        {admin && active === 'favicon' && (
+        {has('favicon') && (
+        <section className="sb-section" id="sec-favicon" aria-labelledby="h-favicon">
+          {heading('favicon')}
+        {admin && (
           <div className="sb-adminrow">
             <button className="sb-btn ghost" onClick={() => admin.addFavicon(product)}>
               <Plus size={16} /> {product.assets.favicon ? 'Replace favicon' : 'Add favicon'}
@@ -295,15 +318,7 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
             {product.assets.favicon && <ConfirmDelete label="the favicon" onConfirm={() => removePart(admin, product, 'favicon')} />}
           </div>
         )}
-        {admin && active === 'guidelines' && (
-          <div className="sb-adminrow">
-            <button className="sb-btn ghost" onClick={() => admin.addGuidelines(product)}>
-              <Plus size={16} /> {product.assets.guidelines ? 'Replace guidelines PDF' : 'Add guidelines PDF'}
-            </button>
-            {product.assets.guidelines && <ConfirmDelete label="the guidelines" onConfirm={() => removePart(admin, product, 'guidelines')} />}
-          </div>
-        )}
-        {active === 'favicon' && product.assets.favicon && (() => {
+        {product.assets.favicon && (() => {
           const fav = product.assets.favicon!;
           const path = fav.svg || fav.png || fav.ico || fav.preview;
           const ext = extOf(path, 'svg');
@@ -319,8 +334,21 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
             </div>
           );
         })()}
+        </section>
+        )}
 
-        {active === 'guidelines' && product.assets.guidelines && (() => {
+        {has('guidelines') && (
+        <section className="sb-section" id="sec-guidelines" aria-labelledby="h-guidelines">
+          {heading('guidelines')}
+        {admin && (
+          <div className="sb-adminrow">
+            <button className="sb-btn ghost" onClick={() => admin.addGuidelines(product)}>
+              <Plus size={16} /> {product.assets.guidelines ? 'Replace guidelines PDF' : 'Add guidelines PDF'}
+            </button>
+            {product.assets.guidelines && <ConfirmDelete label="the guidelines" onConfirm={() => removePart(admin, product, 'guidelines')} />}
+          </div>
+        )}
+        {product.assets.guidelines && (() => {
           const g = product.assets.guidelines!;
           return (
             <div className="sb-grid">
@@ -336,6 +364,8 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
             </div>
           );
         })()}
+        </section>
+        )}
       </div>
       {sheet && sheet.kind !== 'colour' && <FileSheet product={product} target={sheet} onClose={closeSheet} toast={toast} copy={copyText} />}
       {sheet && sheet.kind === 'colour' && <ColourSheet product={product} target={sheet} onClose={closeSheet} toast={toast} copy={copyText} />}
@@ -399,7 +429,8 @@ export function Browse({ admin = false }: { admin?: boolean }) {
     if (p) product = p;
   } else if (parts[0] && !settingsOpen) {
     product = slugs.get(parts[0]);
-    if (parts[1] && (TABS as string[]).includes(parts[1])) tab = parts[1] as Tab;
+    const sec = parts[1] === 'colors' ? 'colours' : parts[1];
+    if (sec && (TABS as string[]).includes(sec)) tab = sec as Tab;
   }
 
   useEffect(() => {
@@ -417,7 +448,7 @@ export function Browse({ admin = false }: { admin?: boolean }) {
 
   const open = (m: Match) => {
     lastRow.current = m.product.id;
-    navigate(`${B}/${slugOf(slugs, m.product)}${m.tab && m.tab !== 'logos' ? `/${m.tab}` : ''}`, { replace: wide && !!product });
+    navigate(`${B}/${slugOf(slugs, m.product)}${m.tab && m.tab !== 'logos' ? `/${m.tab === 'colours' ? 'colors' : m.tab}` : ''}`, { replace: wide && !!product });
   };
   const close = useCallback(() => {
     if (window.history.length > 1 && location.key !== 'default') navigate(-1);
@@ -427,7 +458,7 @@ export function Browse({ admin = false }: { admin?: boolean }) {
       if (id) document.querySelector<HTMLElement>(`[data-row="${id}"]`)?.focus();
     }, 260);
   }, [navigate, location.key]);
-  const setTab = (t: Tab) => shown && navigate(`${B}/${slugOf(slugs, shown)}${t === 'logos' ? '' : `/${t}`}`, { replace: true });
+  const setTab = (t: Tab) => shown && navigate(`${B}/${slugOf(slugs, shown)}${t === 'logos' ? '' : `/${t === 'colours' ? 'colors' : t}`}`, { replace: true });
 
   // Phone sheet: Escape and swipe down close it; focus moves into it on open.
   const sheetOpen = !wide && (!!product || settingsOpen);

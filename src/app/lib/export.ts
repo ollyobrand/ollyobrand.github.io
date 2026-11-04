@@ -238,8 +238,8 @@ export async function buildKit(product: Product): Promise<{ zip: Uint8Array; cou
     files[`${root}-brand-guidelines.pdf`] = await fetchBytes(product.assets.guidelines.pdf);
   }
   if (product.assets.colors?.length) {
-    files[`colours/${root}-palette.json`] = strToU8(paletteJson(product));
-    files[`colours/${root}-palette.ase`] = buildAse(product);
+    files[`colors/${root}-palette.json`] = strToU8(paletteJson(product));
+    files[`colors/${root}-palette.ase`] = buildAse(product);
   }
   const prefixed: Record<string, Uint8Array> = {};
   for (const [k, v] of Object.entries(files)) prefixed[`${root}-brand-kit/${k}`] = v;

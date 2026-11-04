@@ -324,3 +324,22 @@ button.sb-opt[disabled] { opacity: 0.6; cursor: progress; }
   .sb-addcolour-swatch { grid-row: auto; min-height: 44px; height: 44px; width: 44px; }
   .sb-addcolour .sb-btn { grid-column: auto; }
 }
+
+/* ---------- Stacked sections (replaces tabs) ---------- */
+.sb-pane { scroll-behavior: smooth; }
+.sb-section { display: grid; gap: 12px; padding: 18px 0 22px; border-top: 1px solid var(--sb-hair); scroll-margin-top: 8px; }
+.sb-section:first-child { border-top: 0; padding-top: 6px; }
+.sb-section-title {
+  display: flex; align-items: baseline; gap: 8px; margin: 0;
+  font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--sb-ink);
+}
+.sb-section-title .sb-mono { font-size: 11.5px; }
+.sb-section .sb-hint, .sb-section .sb-actions, .sb-section .sb-addcolour { margin-top: 0; }
+.sb-section .sb-empty { padding: 8px 0; text-align: left; }
+@media (min-width: 900px) {
+  .sb-section { padding: 22px 0 28px; }
+  .sb-section-title { font-size: 19px; }
+}
+
+/* Programmatic focus for screen readers; no visible ring on the heading. */
+.sb-public h2[tabindex="-1"]:focus { outline: none !important; }

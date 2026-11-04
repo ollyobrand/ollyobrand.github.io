@@ -191,10 +191,10 @@ export function removeColour(api: AdminApi, product: Product, index: number) {
       updateProduct(
         product.id,
         (p) => ({ ...p, assets: { ...p.assets, colors: (p.assets.colors || []).filter((_, i) => i !== index) } }),
-        `Remove colour: ${c.name} (${normalHex(c.hex)}) from ${product.name}`,
+        `Remove color: ${c.name} (${normalHex(c.hex)}) from ${product.name}`,
       ),
-    'Colour removed',
-    "Couldn't remove the colour",
+    'Color removed',
+    "Couldn't remove the color",
   );
 }
 
@@ -229,7 +229,7 @@ export function AddColour({ product, api }: { product: Product; api: AdminApi })
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim()) return api.toast('Give the colour a name, for example Primary or Accent');
+    if (!name.trim()) return api.toast('Give the color a name, for example Primary or Accent');
     if (!valid) return api.toast('Enter a hex code like #2151ED');
     if (dupeName && !confirmDupe) {
       setConfirmDupe(true);
@@ -242,10 +242,10 @@ export function AddColour({ product, api }: { product: Product; api: AdminApi })
         updateProduct(
           product.id,
           (p) => ({ ...p, assets: { ...p.assets, colors: [...(p.assets.colors || []), { name: name.trim(), hex: clean, rgb: `rgb(${rgbString(clean)})` }] } }),
-          `Add colour: ${name.trim()} (${clean}) to ${product.name}`,
+          `Add color: ${name.trim()} (${clean}) to ${product.name}`,
         ),
       `Added ${name.trim()}`,
-      "Couldn't add the colour",
+      "Couldn't add the color",
     );
     setBusy(false);
     if (ok) {
@@ -258,7 +258,7 @@ export function AddColour({ product, api }: { product: Product; api: AdminApi })
   return (
     <form className="sb-addcolour" onSubmit={submit}>
       <span className="sb-addcolour-swatch" style={{ background: clean || 'transparent' }} aria-hidden="true">
-        <input type="color" value={clean || '#ffffff'} onChange={(e) => setHex(e.target.value.toUpperCase())} aria-label="Pick a colour" />
+        <input type="color" value={clean || '#ffffff'} onChange={(e) => setHex(e.target.value.toUpperCase())} aria-label="Pick a color" />
       </span>
       <label className="sb-field">
         <span className="sb-mono">Name</span>
@@ -277,7 +277,7 @@ export function AddColour({ product, api }: { product: Product; api: AdminApi })
       </label>
       <button className="sb-btn" type="submit" disabled={busy}>
         {busy ? <Loader2 size={16} className="sb-spin" /> : <Plus size={16} />}
-        {confirmDupe ? 'Add anyway' : 'Add colour'}
+        {confirmDupe ? 'Add anyway' : 'Add color'}
       </button>
       {(dupeName || dupeHex) && (
         <p className="sb-warn" role="status">
