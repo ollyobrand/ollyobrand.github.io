@@ -21,6 +21,6 @@ export const LARGE_UPLOAD_BYTES = 25 * 1024 * 1024;
 // Both are empty until the GitHub App and the Vercel project exist; the login
 // page says so instead of showing a broken button.
 export const AUTH = {
-  clientId: '',
-  helperUrl: '',
+  clientId: 'Iv23liYyO8QeKilBjocL',
+  helperUrl: 'https://ollyo-brand-auth-helper.vercel.app',
 } as const;
