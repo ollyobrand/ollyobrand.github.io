@@ -8,6 +8,8 @@ import {
   search, slugMap, slugOf, Tab, tabsFor, textOn,
 } from '../lib/brand';
 import { Product } from '../types';
+import { buildAse, buildKit, fileBase, paletteJson, saveBlob } from '../lib/export';
+import { ColourSheet, FileSheet, FileTarget } from './FileSheet';
 import './browse.css';
 
 const TABS: Tab[] = ['logos', 'colours', 'favicon', 'guidelines'];
@@ -96,21 +98,30 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef }: Produc
 
   const downloadAll = async () => {
     setBusy(true);
-    const files: { path: string; name: string }[] = [];
-    const add = (path: string | undefined, name: string) => {
-      if (path && !files.some((f) => f.path === path)) files.push({ path, name: `${name}.${extOf(path, 'svg')}` });
-    };
-    product.assets.logos?.forEach((l) => add(logoOriginal(l)?.path, `${base}-${l.name.trim().replace(/\s+/g, '-')}`));
-    const fav = product.assets.favicon;
-    if (fav) add(fav.svg || fav.png || fav.ico || fav.preview, `${base}-favicon`);
-    add(product.assets.guidelines?.pdf, `${base}-brand-guidelines`);
-    for (const f of files) {
-      await save(f.path, f.name);
-      await new Promise((r) => setTimeout(r, 300));
+    try {
+      const { zip, count } = await buildKit(product);
+      saveBlob(new Blob([zip as BlobPart], { type: 'application/zip' }), `${fileBase(product)}-brand-kit.zip`);
+      toast(`Saved ${count} files as ${fileBase(product)}-brand-kit.zip`);
+    } catch {
+      toast("Couldn't build the brand kit. Check your connection and try again.");
+    } finally {
+      setBusy(false);
     }
-    setBusy(false);
-    toast(`Downloaded ${files.length} ${files.length === 1 ? 'file' : 'files'}`);
   };
+
+  const [sheet, setSheet] = useState<FileTarget | null>(null);
+  const closeSheet = useCallback(() => setSheet(null), []);
+  const press = useRef<number>(0);
+  const pressed = useRef(false);
+  const holdStart = (i: number) => {
+    pressed.current = false;
+    window.clearTimeout(press.current);
+    press.current = window.setTimeout(() => {
+      pressed.current = true;
+      setSheet({ kind: 'colour', index: i, label: labels[i] });
+    }, 450);
+  };
+  const holdEnd = () => window.clearTimeout(press.current);
 
   const copyHex = async (i: number) => {
     const hex = normalHex(product.assets.colors[i].hex);
@@ -135,14 +146,14 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef }: Produc
           </button>
         ) : (
           <button className="sb-btn" onClick={downloadAll} disabled={busy}>
-            <Download size={16} /> {busy ? 'Downloading…' : 'Download all'}
+            <Download size={16} /> {busy ? 'Building zip…' : 'Download all'}
           </button>
         )}
       </header>
       {onClose && (
         <div style={{ padding: '12px 16px 0' }}>
           <button className="sb-btn" style={{ width: '100%' }} onClick={downloadAll} disabled={busy}>
-            <Download size={16} /> {busy ? 'Downloading…' : 'Download all'}
+            <Download size={16} /> {busy ? 'Building zip…' : 'Download all'}
           </button>
         </div>
       )}
@@ -165,16 +176,16 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef }: Produc
                 const dark = /dark|white|reverse/i.test(`${logo.name} ${logo.variant}`);
                 return (
                   <div className="sb-asset" key={logo.id}>
-                    <div className={`sb-plate${dark ? ' dark' : ''}`}>
-                      <img src={assetUrl(logo.preview || original?.path)} alt={logo.name} loading="lazy" />
-                    </div>
+                    <button className={`sb-plate${dark ? ' dark' : ''}`} onClick={() => setSheet({ kind: 'logo', logo })} aria-label={`${logo.name.trim()}: file options`}>
+                      <img src={assetUrl(logo.preview || original?.path)} alt="" loading="lazy" />
+                    </button>
                     <div className="sb-asset-meta">
                       <b>{logo.name.trim()}</b>
-                      <span className="sb-mono">{original?.ext.toUpperCase()}</span>
+                      <span className="sb-mono">{original?.ext === 'svg' ? 'SVG · PNG' : original?.ext.toUpperCase()}</span>
                     </div>
                     {original && (
-                      <button className="sb-btn ghost" onClick={() => save(original.path, `${base}-${logo.name.trim().replace(/\s+/g, '-')}.${original.ext}`)}>
-                        <Download size={16} /> Download {original.ext.toUpperCase()}
+                      <button className="sb-btn ghost" onClick={() => setSheet({ kind: 'logo', logo })}>
+                        <Download size={16} /> Download
                       </button>
                     )}
                   </div>
@@ -192,7 +203,21 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef }: Produc
                 {product.assets.colors.map((c, i) => {
                   const hex = normalHex(c.hex);
                   return (
-                    <button key={i} className={`sb-chip${copied === i ? ' copied' : ''}`} onClick={() => copyHex(i)} aria-label={`${labels[i]}, ${hex}. Copy hex`}>
+                    <button
+                      key={i}
+                      className={`sb-chip${copied === i ? ' copied' : ''}`}
+                      onClick={() => (pressed.current ? (pressed.current = false) : copyHex(i))}
+                      onPointerDown={() => holdStart(i)}
+                      onPointerUp={holdEnd}
+                      onPointerLeave={holdEnd}
+                      onPointerCancel={holdEnd}
+                      onContextMenu={(e) => {
+                        e.preventDefault();
+                        holdEnd();
+                        setSheet({ kind: 'colour', index: i, label: labels[i] });
+                      }}
+                      aria-label={`${labels[i]}, ${hex}. Tap to copy hex; press and hold for RGB, HSL and CSS`}
+                    >
                       <span className="sb-chip-colour" style={{ background: hex, color: textOn(hex) }}>
                         {hex}
                         <small>{rgbString(hex)}</small>
@@ -203,12 +228,19 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef }: Produc
                   );
                 })}
               </div>
+              <p className="sb-mono sb-hint">Tap to copy hex. Press and hold, or right-click, for RGB, HSL and CSS.</p>
               <div className="sb-actions">
                 <button className="sb-btn ghost" onClick={async () => toast((await copyText(product.assets.colors.map((c) => normalHex(c.hex)).join('\n'))) ? `Copied ${product.assets.colors.length} hex codes` : 'Copy failed')}>
                   Copy all hex
                 </button>
                 <button className="sb-btn ghost" onClick={async () => toast((await copyText(cssVariables(product))) ? 'Copied as CSS variables' : 'Copy failed')}>
                   Copy as CSS
+                </button>
+                <button className="sb-btn ghost" onClick={() => { saveBlob(new Blob([paletteJson(product)], { type: 'application/json' }), `${fileBase(product)}-palette.json`); toast('Saved palette as JSON'); }}>
+                  JSON
+                </button>
+                <button className="sb-btn ghost" onClick={() => { saveBlob(new Blob([buildAse(product) as BlobPart], { type: 'application/octet-stream' }), `${fileBase(product)}-palette.ase`); toast('Saved palette for Adobe apps (.ase)'); }}>
+                  ASE
                 </button>
               </div>
             </>
@@ -223,10 +255,10 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef }: Produc
           return (
             <div className="sb-grid">
               <div className="sb-asset">
-                <div className="sb-plate"><img src={assetUrl(fav.preview || path)} alt={`${product.name} favicon`} /></div>
-                <div className="sb-asset-meta"><b>Favicon</b><span className="sb-mono">{ext.toUpperCase()}</span></div>
-                <button className="sb-btn ghost" onClick={() => save(path, `${base}-favicon.${ext}`)}>
-                  <Download size={16} /> Download {ext.toUpperCase()}
+                <button className="sb-plate" onClick={() => setSheet({ kind: 'favicon' })} aria-label="Favicon: file options"><img src={assetUrl(fav.preview || path)} alt="" /></button>
+                <div className="sb-asset-meta"><b>Favicon</b><span className="sb-mono">{ext === 'svg' ? 'ICO · PNG · SVG' : ext.toUpperCase()}</span></div>
+                <button className="sb-btn ghost" onClick={() => setSheet({ kind: 'favicon' })}>
+                  <Download size={16} /> Download
                 </button>
               </div>
             </div>
@@ -250,6 +282,8 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef }: Produc
           );
         })()}
       </div>
+      {sheet && sheet.kind !== 'colour' && <FileSheet product={product} target={sheet} onClose={closeSheet} toast={toast} copy={copyText} />}
+      {sheet && sheet.kind === 'colour' && <ColourSheet product={product} target={sheet} onClose={closeSheet} toast={toast} copy={copyText} />}
     </div>
   );
 }
