@@ -2,7 +2,6 @@
 import { createHashRouter } from "react-router";
 import { Browse } from './pages/Browse';
 import { AdminLogin } from './pages/AdminLogin';
-import { AdminDashboard } from './pages/AdminDashboard';
 
 export const router = createHashRouter([
   {
@@ -10,8 +9,9 @@ export const router = createHashRouter([
     element: <AdminLogin />,
   },
   {
-    path: "/admin/dashboard",
-    element: <AdminDashboard />,
+    // Admin: the same shell in edit mode. /admin/dashboard, /:product, /:product/:tab, /settings
+    path: "/admin/dashboard/*",
+    element: <Browse admin />,
   },
   {
     // Public site: /, /:product, /:product/:tab, and the old /product/:id links.
