@@ -39,11 +39,11 @@ export function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
+        <div className="bg-card rounded-2xl border border-border p-6 sm:p-8">
           <div className="text-center mb-8">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-4">
+            <div className="w-12 h-12 rounded-xl bg-ink flex items-center justify-center mx-auto mb-4">
               <ShieldCheck className="w-6 h-6 text-white" />
             </div>
             <h1 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-2">Admin Login</h1>
@@ -64,7 +64,7 @@ export function AdminLogin() {
                   value={token}
                   onChange={(e) => setToken(e.target.value)}
                   placeholder="ghp_… or github_pat_…"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all font-mono text-sm"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:border-foreground outline-none transition-all font-mono text-sm"
                   disabled={loading}
                   aria-invalid={Boolean(error)}
                   aria-describedby={error ? 'token-error' : undefined}
@@ -80,7 +80,7 @@ export function AdminLogin() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 bg-primary hover:opacity-90 text-white font-medium py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading && <Loader2 className="w-4 h-4 animate-spin" />}
               {loading ? 'Verifying…' : 'Sign In'}
@@ -91,7 +91,7 @@ export function AdminLogin() {
             <p className="font-medium text-gray-900">Need a token?</p>
             <ol className="list-decimal pl-5 space-y-1">
               <li>
-                <a href={TOKEN_URL} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline inline-flex items-center gap-1">
+                <a href={TOKEN_URL} target="_blank" rel="noreferrer" className="text-foreground underline hover:no-underline inline-flex items-center gap-1">
                   Create a classic token <ExternalLink className="w-3 h-3" />
                 </a>{' '}
                 with the <code className="text-xs bg-white border px-1 rounded">public_repo</code> scope.
