@@ -170,13 +170,9 @@ export function Settings({ session, onSettingsSaved, onSessionExpired }: Setting
   }
 
   return (
-    <div className="p-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-semibold text-gray-900 mb-2">Settings</h1>
-            <p className="text-gray-600">Configure your Brand Asset Manager</p>
-          </div>
+    <div>
+      <div className="max-w-4xl">
+        <div className="flex items-center justify-end mb-6">
           <Button onClick={handleSave} disabled={saving} className="gap-2">
             {saving ? (
               <>
@@ -248,7 +244,7 @@ export function Settings({ session, onSettingsSaved, onSessionExpired }: Setting
                       Upload a logo to display in the sidebar. Recommended size: 200x200px (transparent PNG or SVG)
                     </p>
                     {logoFile && (
-                      <p className="text-sm text-blue-600 mt-1">
+                      <p className="text-sm text-muted-foreground mt-1">
                         Selected: {logoFile.name}
                       </p>
                     )}
