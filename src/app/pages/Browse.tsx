@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { ChevronRight, Download, LogOut, Pencil, Plus, Search, Settings as SettingsIcon, X } from 'lucide-react';
 import imgLogo from 'figma:asset/7efdf963b465ea840cf15b3e1ac80db6d73ce1bb.png';
 import { assetUrl, Database, deleteProduct, downloadFile, loadAdminDb, loadPublicDb } from '../lib/api';
-import { AdminSession, getSession, SessionExpiredError, signOut } from '../lib/auth';
+import { AdminSession, getSession, refreshIfNeeded, SessionExpiredError, signOut } from '../lib/auth';
 import { AddColour, AdminApi, ConfirmDelete, LogoDrop, removeColour, removeLogo, removePart } from './AdminEdit';
 import { CreateProductModal } from '../components/CreateProductModal';
 import { EditProductModal } from '../components/EditProductModal';
@@ -393,7 +393,7 @@ export function Browse({ admin = false }: { admin?: boolean }) {
   const [modal, setModal] = useState<null | { kind: 'create' } | { kind: 'edit' | 'favicon' | 'guidelines'; product: Product }>(null);
 
   const expire = useCallback(() => {
-    toast('Your GitHub token has expired. Sign in again.');
+    toast('Your sign-in has expired. Sign in with GitHub again.');
     signOut();
     setSession(null);
     window.setTimeout(() => navigate('/admin'), 1200);
@@ -403,6 +403,7 @@ export function Browse({ admin = false }: { admin?: boolean }) {
     setError(false);
     try {
       // Admins read straight from GitHub, so they see saves before Pages redeploys.
+      if (admin) await refreshIfNeeded();
       setDb(admin ? await loadAdminDb() : await loadPublicDb());
     } catch (e) {
       if (e instanceof SessionExpiredError) expire();
@@ -415,7 +416,11 @@ export function Browse({ admin = false }: { admin?: boolean }) {
       return;
     }
     load();
-  }, [load, admin, session, navigate]);
+    if (!admin) return;
+    // Renew the 8-hour GitHub token in the background while the dashboard is open.
+    const timer = window.setInterval(() => refreshIfNeeded().catch(expire), 5 * 60 * 1000);
+    return () => window.clearInterval(timer);
+  }, [load, admin, session, navigate, expire]);
 
   const slugs = useMemo(() => slugMap(db?.products || []), [db]);
 

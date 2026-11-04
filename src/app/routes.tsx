@@ -3,7 +3,8 @@ import { createHashRouter } from "react-router";
 import { Browse } from './pages/Browse';
 import { AdminLogin } from './pages/AdminLogin';
 
-export const router = createHashRouter([
+// Built on demand so it reads the address after a GitHub sign-in has rewritten it.
+export const makeRouter = () => createHashRouter([
   {
     path: "/admin",
     element: <AdminLogin />,
