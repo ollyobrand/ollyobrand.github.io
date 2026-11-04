@@ -1,0 +1,172 @@
+/*
+ * Ollyo Brand Assets — design tokens ("Swatch book").
+ * One source for colour, type, radius, spacing and motion.
+ * Raw tokens (--sb-*) are mapped onto the names the existing components use
+ * (--background, --primary, ...), so screens can move over one at a time.
+ * The dark palette is defined here and is applied with the .dark class or
+ * data-theme="dark". Following the system setting is switched on in the
+ * public-shell PR, once every screen reads its colours from these tokens.
+ */
+
+:root {
+  /* Neutrals */
+  --sb-paper: #fafaf9;
+  --sb-plate: #f2f2f0;
+  --sb-hair: #e6e6e3;
+  --sb-ink: #111110;
+  --sb-muted: #6b6b66;
+  --sb-danger: #c8312b;
+
+  /* OLLYO green: focus rings and active states only */
+  --sb-focus: #2fce2c;
+
+  /* Per-product accent; a product view sets these from its primary colour */
+  --sb-accent: #111110;
+  --sb-accent-fg: #ffffff;
+  --sb-wash: color-mix(in srgb, var(--sb-accent) 7%, var(--sb-paper));
+
+  /* Type */
+  --sb-font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sb-font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Shape and motion */
+  --sb-radius-tile: 14px;
+  --sb-radius-control: 10px;
+  --sb-ease: cubic-bezier(0.2, 0.9, 0.25, 1);
+  --sb-dur: 200ms;
+  --sb-target: 44px;
+
+  /* Mapped names used by the existing components */
+  --font-size: 16px;
+  --background: var(--sb-paper);
+  --foreground: var(--sb-ink);
+  --card: var(--sb-paper);
+  --card-foreground: var(--sb-ink);
+  --popover: var(--sb-paper);
+  --popover-foreground: var(--sb-ink);
+  --primary: var(--sb-ink);
+  --primary-foreground: var(--sb-paper);
+  --secondary: var(--sb-plate);
+  --secondary-foreground: var(--sb-ink);
+  --muted: var(--sb-plate);
+  --muted-foreground: var(--sb-muted);
+  --accent: var(--sb-plate);
+  --accent-foreground: var(--sb-ink);
+  --destructive: var(--sb-danger);
+  --destructive-foreground: #ffffff;
+  --border: var(--sb-hair);
+  --input: var(--sb-hair);
+  --input-background: var(--sb-plate);
+  --switch-background: var(--sb-hair);
+  --ring: var(--sb-focus);
+  --radius: var(--sb-radius-control);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+}
+
+.dark,
+:root[data-theme='dark'] {
+  --sb-paper: #141413;
+  --sb-plate: #1e1e1c;
+  --sb-hair: #2e2e2b;
+  --sb-ink: #f2f2ef;
+  --sb-muted: #9a9a93;
+  --sb-danger: #ff6b62;
+  --sb-accent: #f2f2ef;
+  --sb-accent-fg: #141413;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+
+  --color-paper: var(--sb-paper);
+  --color-plate: var(--sb-plate);
+  --color-hair: var(--sb-hair);
+  --color-ink: var(--sb-ink);
+  --color-quiet: var(--sb-muted);
+  --color-brand: var(--sb-accent);
+  --color-brand-fg: var(--sb-accent-fg);
+  --color-wash: var(--sb-wash);
+  --color-focus: var(--sb-focus);
+
+  --font-sans: var(--sb-font-sans);
+  --font-mono: var(--sb-font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-tile: var(--sb-radius-tile);
+  --radius-control: var(--sb-radius-control);
+}
+
+@custom-variant dark (&:is(.dark *, [data-theme='dark'] *));
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-size: var(--font-size);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--sb-font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Visible keyboard focus on every control, overriding outline-none utilities */
+  :focus-visible {
+    outline: 2px solid var(--sb-focus) !important;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Base typography; not applied to elements with a Tailwind text class above them. */
+@layer base {
+  :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
+    h1 { font-size: var(--text-2xl); font-weight: 600; line-height: 1.3; }
+    h2 { font-size: var(--text-xl); font-weight: 600; line-height: 1.3; }
+    h3 { font-size: var(--text-lg); font-weight: 600; line-height: 1.4; }
+    h4 { font-size: var(--text-base); font-weight: 600; line-height: 1.4; }
+    p { font-size: var(--text-base); font-weight: 400; line-height: 1.5; }
+    label { font-size: var(--text-base); font-weight: 500; line-height: 1.5; }
+    button { font-size: var(--text-base); font-weight: 500; line-height: 1.5; }
+    input { font-size: var(--text-base); font-weight: 400; line-height: 1.5; }
+  }
+}

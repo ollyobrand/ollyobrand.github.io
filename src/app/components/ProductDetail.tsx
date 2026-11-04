@@ -11,7 +11,7 @@ import { AddLogoModal } from './AddLogoModal';
 import { AddColorModal } from './AddColorModal';
 import { AddFaviconModal } from './AddFaviconModal';
 import { AddGuidelinesModal } from './AddGuidelinesModal';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { assetUrl, downloadFile, fileExt, updateProduct } from '../lib/api';
 import { SessionExpiredError } from '../lib/auth';
 

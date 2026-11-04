@@ -10,7 +10,7 @@ import { EditProductModal } from '../components/EditProductModal';
 import { Settings } from '../components/Settings';
 import { Product } from '../types';
 import { Toaster } from '../components/ui/sonner';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { AppSettings, assetUrl, deleteProduct, loadAdminDb } from '../lib/api';
 import { AdminSession, getSession, SessionExpiredError, signOut } from '../lib/auth';
 
