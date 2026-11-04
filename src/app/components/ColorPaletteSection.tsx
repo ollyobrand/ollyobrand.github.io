@@ -2,7 +2,7 @@ import { Copy, Download, Trash2, Plus } from 'lucide-react';
 import { Color } from '../types';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 interface ColorPaletteSectionProps {
   colors: Color[];

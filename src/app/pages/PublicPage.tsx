@@ -61,7 +61,7 @@ export function PublicPage() {
                   alt={settings.organizationName}
                   className="absolute inset-0 max-w-none object-contain size-full rounded-full"
                 />
-              ) : (
+              ) : loading ? null : (
                 <img
                   src={imgLogo}
                   alt={settings.organizationName}

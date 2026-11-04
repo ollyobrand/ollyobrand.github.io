@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { ExternalLink, KeyRound, Loader2, ShieldCheck } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { Toaster } from '../components/ui/sonner';
 import { getSession, signIn } from '../lib/auth';
 import { REPO } from '../lib/config';

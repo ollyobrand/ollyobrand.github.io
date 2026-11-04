@@ -1,4 +1,4 @@
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { Product } from '../types';
 import { ASSETS_PREFIX, DB_PATH, LARGE_UPLOAD_BYTES, MAX_UPLOAD_BYTES, PUBLIC_DIR, REPO } from './config';
 import { commitTree, createBlob, getHeadSha, GitHubError, gh, listTreePaths, readTextFile, repoPath } from './github';

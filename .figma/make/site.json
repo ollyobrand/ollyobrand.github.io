@@ -1,10 +1,15 @@
 {
-  "description": "Manage and share brand assets by adding logos, favicons, color palettes, and guidelines with controlled access for editing and downloading.",
+  "description": "Official logos, favicons and colour palettes for OLLYO products. Free to download, no sign-in needed.",
   "robots": {
     "index": false
   },
   "accessibility": {
     "addBypassLinks": false,
     "ignoreReducedMotion": false
+  },
+  "title": "Ollyo Brand Assets",
+  "language": "en",
+  "customScripts": {
+    "headEnd": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap\">"
   }
 }
