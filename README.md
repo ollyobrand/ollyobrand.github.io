@@ -17,7 +17,7 @@ There is no server or database. GitHub is the backend:
 
 Visitors read `db.json` and the files straight from the Pages site, so downloads need no login.
 
-Admins sign in at `/#/admin` with a GitHub personal access token. Every create, edit, upload or delete becomes one commit on `main`: the new files plus the updated `db.json`, with files that are no longer used removed. The admin panel reads straight from the GitHub API, so changes show up for admins right away. The public site picks them up once the Pages deploy finishes, usually in 1–2 minutes.
+Admins sign in at `/#/admin` with **Sign in with GitHub** (see setup below). Every create, edit, upload or delete becomes one commit on `main`: the new files plus the updated `db.json`, with files that are no longer used removed. The admin panel reads straight from the GitHub API, so changes show up for admins right away. The public site picks them up once the Pages deploy finishes, usually in 1–2 minutes.
 
 ## Publishing to GitHub Pages (one-time setup)
 
@@ -89,13 +89,20 @@ jobs:
 - **Power admin:** owners of the `ollyobrand` GitHub organization (`iShowkot`). Can manage other admins under **Settings → Admins**.
 - **Admins:** GitHub users with write access to this repo. The power admin invites them by GitHub username, and they become admins once they accept the invitation on GitHub (or from the email GitHub sends).
 
-### Creating a sign-in token
+### Sign in with GitHub (one-time setup)
 
-1. Go to GitHub → Settings → Developer settings → Personal access tokens → **Tokens (classic)** → Generate new token.
-2. Select the **`public_repo`** scope and generate the token.
-3. Paste it on the admin login page. It is stored only in that browser and sent only to `api.github.com`.
+Sign-in uses a GitHub App on the `ollyobrand` organisation and a small helper on Vercel (`auth-helper/`) that holds the app's client secret. Tokens last 8 hours and renew quietly; nothing is stored on the helper.
 
-Fine-grained tokens also work for the owner. Give them access to this repo with **Contents: Read and write**, plus **Administration: Read and write** for admin management. Other admins should use classic tokens, unless the `ollyobrand` organization allows fine-grained tokens (Organization settings → Personal access tokens).
+1. **Create the GitHub App** under the `ollyobrand` organisation (Settings → Developer settings → GitHub Apps → New GitHub App):
+   - Homepage URL and **Callback URL**: `https://ollyobrand.github.io/`
+   - Keep **Expire user authorization tokens** on. Turn **Webhook** off.
+   - Repository permissions: **Contents** read and write, **Administration** read and write (for managing admins), **Metadata** read.
+   - Where can it be installed: **Only on this account**.
+2. After creating it, **Install App** on `ollyobrand`, choosing only `ollyobrand.github.io`. Then **Generate a new client secret** and keep the page open.
+3. **Import this repo into Vercel**, set **Root Directory** to `auth-helper`, and add `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` and `ALLOWED_ORIGINS=https://ollyobrand.github.io`. Deploy.
+4. Put the app's Client ID and the Vercel URL in `AUTH` in `src/app/lib/config.ts`. Both are public.
+
+Until step 4 is done, the login page says sign-in isn't set up yet.
 
 ## Limits
 

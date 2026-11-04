@@ -1,0 +1,7 @@
+{
+  "name": "ollyo-brand-auth-helper",
+  "private": true,
+  "type": "module",
+  "description": "Swaps GitHub App sign-in codes for user tokens for the Ollyo Brand Assets admin.",
+  "engines": { "node": ">=20" }
+}

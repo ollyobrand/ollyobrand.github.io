@@ -368,7 +368,7 @@ export function Settings({ session, onSettingsSaved, onSessionExpired }: Setting
                   Admins
                 </CardTitle>
                 <CardDescription>
-                  Admins are GitHub users with write access to {REPO.owner}/{REPO.name}. Invited users become admins once they accept the invitation on GitHub.
+                  People who can sign in and edit brand assets. Invite someone by their GitHub username; once they accept GitHub's email invitation they can sign in with GitHub.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -390,7 +390,7 @@ export function Settings({ session, onSettingsSaved, onSessionExpired }: Setting
                           placeholder="octocat"
                           autoFocus
                         />
-                        <p className="text-sm text-gray-500 mt-1">They need a free GitHub account to sign in.</p>
+                        <p className="text-sm text-gray-500 mt-1">They need a free GitHub account.</p>
                       </div>
                       <div className="flex items-center justify-end gap-2">
                         <Button type="button" variant="outline" size="sm" onClick={() => setShowAddUser(false)}>
@@ -427,7 +427,7 @@ export function Settings({ session, onSettingsSaved, onSessionExpired }: Setting
                             <img src={person.avatarUrl} alt="" className="w-9 h-9 rounded-full shrink-0" />
                             <div className="min-w-0">
                               <p className="font-medium text-gray-900 truncate">@{person.login}</p>
-                              <p className="text-sm text-gray-500">{person.isOwner ? 'Power admin' : 'Admin'}</p>
+                              <p className="text-sm text-gray-500">{person.isOwner ? 'Owner · Active' : 'Admin · Active'}</p>
                             </div>
                           </div>
                           {!person.isOwner && person.login !== session.login && (
@@ -456,7 +456,7 @@ export function Settings({ session, onSettingsSaved, onSessionExpired }: Setting
                               <p className="font-medium text-gray-900 truncate">@{invite.login}</p>
                               <p className="text-sm text-amber-600 flex items-center gap-1">
                                 <Clock className="w-3.5 h-3.5" />
-                                Invitation pending
+                                Invited · waiting for them to accept on GitHub
                               </p>
                             </div>
                           </div>
@@ -468,7 +468,7 @@ export function Settings({ session, onSettingsSaved, onSessionExpired }: Setting
                             className="gap-2"
                           >
                             {busyUser === `invite-${invite.id}` ? <Loader2 className="w-4 h-4 animate-spin" /> : <X className="w-4 h-4" />}
-                            <span className="hidden sm:inline">Cancel</span>
+                            <span className="hidden sm:inline">Cancel invite</span>
                           </Button>
                         </div>
                       ))}

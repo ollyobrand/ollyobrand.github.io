@@ -14,3 +14,13 @@ export const ASSETS_PREFIX = 'assets/';
 
 export const MAX_UPLOAD_BYTES = 100 * 1024 * 1024;
 export const LARGE_UPLOAD_BYTES = 25 * 1024 * 1024;
+
+// "Sign in with GitHub" (a GitHub App on the ollyobrand organisation).
+// The Client ID is public. The client secret lives only in the Vercel helper
+// (auth-helper/), which swaps GitHub's one-time sign-in code for a token.
+// Both are empty until the GitHub App and the Vercel project exist; the login
+// page says so instead of showing a broken button.
+export const AUTH = {
+  clientId: '',
+  helperUrl: '',
+} as const;
