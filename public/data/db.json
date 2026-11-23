@@ -13,14 +13,6 @@
       "assets": {
         "logos": [
           {
-            "id": "logo-1",
-            "png": "assets/joomshaper/d1a025e1-f114-4f30-8a70-04068c27800c.png",
-            "svg": "assets/joomshaper/d1a025e1-f114-4f30-8a70-04068c27800c.png",
-            "name": "Dark Logo",
-            "preview": "assets/joomshaper/d1a025e1-f114-4f30-8a70-04068c27800c.png",
-            "variant": "Dark"
-          },
-          {
             "id": "logo-1776238968534-0",
             "png": "assets/joomshaper/c9d3d371-87a5-428b-913f-d925e8d93591.svg",
             "svg": "assets/joomshaper/c9d3d371-87a5-428b-913f-d925e8d93591.svg",
@@ -51,7 +43,7 @@
       "logoUrl": "assets/joomshaper/8639c129-fa9f-40d7-97fc-15793eb9aa29.svg",
       "tagline": "Grow your business with the world’s #1 tools for Joomla!",
       "createdAt": "2026-04-15T07:10:44.079Z",
-      "updatedAt": "2026-11-23T11:58:35.487Z"
+      "updatedAt": "2026-11-23T11:58:43.830Z"
     },
     {
       "id": "632c3fb2-4468-4e91-8d57-82dc0c38ad43",
