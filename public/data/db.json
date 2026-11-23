@@ -127,6 +127,11 @@
             "name": "Accent",
             "hex": "#AE80FF",
             "rgb": "rgb(174, 128, 255)"
+          },
+          {
+            "name": "Accent",
+            "hex": "#FF6600",
+            "rgb": "rgb(255, 102, 0)"
           }
         ],
         "favicon": {
@@ -139,7 +144,7 @@
       "logoUrl": "assets/growfund/7580d925-22fb-4e0c-94c7-124e1d8e4f96.svg",
       "tagline": "The complete donation crowdfunding solution for WordPress",
       "createdAt": "2026-04-15T07:24:54.598Z",
-      "updatedAt": "2026-11-23T11:52:07.007Z"
+      "updatedAt": "2026-11-23T11:52:32.640Z"
     },
     {
       "id": "21278f71-59ee-4c33-87a7-3adabb8b4879",
