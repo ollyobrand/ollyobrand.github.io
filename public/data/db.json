@@ -346,6 +346,20 @@
             "variant": "dark",
             "preview": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/3bda2efe-cdb6-43e6-a8b9-8b39d144579e.svg",
             "svg": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/3bda2efe-cdb6-43e6-a8b9-8b39d144579e.svg"
+          },
+          {
+            "id": "logo-1795427252031-0",
+            "name": "EasyStore LOGO",
+            "variant": "horizontal",
+            "preview": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/e77ff780-f6eb-4eb8-b0f5-d4778f38edf5.png",
+            "png": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/e77ff780-f6eb-4eb8-b0f5-d4778f38edf5.png"
+          },
+          {
+            "id": "logo-1795427253051-1",
+            "name": "EasyStore LOGO",
+            "variant": "horizontal",
+            "preview": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/31ccc26a-1af0-4e85-a1c2-430f4f8f36b6.svg",
+            "svg": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/31ccc26a-1af0-4e85-a1c2-430f4f8f36b6.svg"
           }
         ],
         "colors": [
@@ -400,7 +414,7 @@
       "logoUrl": "assets/easystore/4372f83d-a040-4bc0-a514-e1341921a7ed.svg",
       "tagline": "The Ultimate eCommerce Extension for Joomla",
       "createdAt": "2026-04-15T09:58:39.313Z",
-      "updatedAt": "2026-11-23T09:44:42.607Z"
+      "updatedAt": "2026-11-23T09:47:34.760Z"
     }
   ]
 }
