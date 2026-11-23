@@ -32,6 +32,13 @@
             "variant": "dark",
             "preview": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/c8b9680c-af7b-4429-84b3-833efe0a3c67.svg",
             "svg": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/c8b9680c-af7b-4429-84b3-833efe0a3c67.svg"
+          },
+          {
+            "id": "logo-1795435671274-0",
+            "name": "Icon",
+            "variant": "icon",
+            "preview": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/a79c0e08-9248-4dd5-bbd5-d579ea837e48.svg",
+            "svg": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/a79c0e08-9248-4dd5-bbd5-d579ea837e48.svg"
           }
         ],
         "colors": [
@@ -51,7 +58,7 @@
       "logoUrl": "assets/joomshaper/8639c129-fa9f-40d7-97fc-15793eb9aa29.svg",
       "tagline": "Grow your business with the world’s #1 tools for Joomla!",
       "createdAt": "2026-04-15T07:10:44.079Z",
-      "updatedAt": "2026-11-23T12:07:08.328Z"
+      "updatedAt": "2026-11-23T12:07:52.949Z"
     },
     {
       "id": "632c3fb2-4468-4e91-8d57-82dc0c38ad43",
