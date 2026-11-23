@@ -133,14 +133,6 @@
       "assets": {
         "logos": [
           {
-            "id": "logo-0",
-            "png": "assets/tutor-lms/5704dabd-c507-4319-8584-2f8317feb78d.svg",
-            "svg": "assets/tutor-lms/5704dabd-c507-4319-8584-2f8317feb78d.svg",
-            "name": "Horizontal Logo",
-            "preview": "assets/tutor-lms/5704dabd-c507-4319-8584-2f8317feb78d.svg",
-            "variant": "Horizontal "
-          },
-          {
             "id": "logo-1",
             "png": "assets/tutor-lms/0da487b0-1e86-48ee-ab00-f42820072128.svg",
             "svg": "assets/tutor-lms/0da487b0-1e86-48ee-ab00-f42820072128.svg",
@@ -194,7 +186,7 @@
       "logoUrl": "assets/tutor-lms/77c8a678-a49f-4020-991e-6cc933d16049.svg",
       "tagline": "eLearning solution that works for you",
       "createdAt": "2026-04-15T07:41:04.135Z",
-      "updatedAt": "2026-04-15T07:41:43.701Z"
+      "updatedAt": "2026-11-23T11:37:21.772Z"
     },
     {
       "id": "b8d6ee11-a717-4d91-8371-370d763dd82c",
