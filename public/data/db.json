@@ -13,14 +13,6 @@
       "assets": {
         "logos": [
           {
-            "id": "logo-0",
-            "png": "assets/joomshaper/49131b6a-2d6d-452b-a71f-b7f999fd6682.svg",
-            "svg": "assets/joomshaper/49131b6a-2d6d-452b-a71f-b7f999fd6682.svg",
-            "name": "Horizontal Logo",
-            "preview": "assets/joomshaper/49131b6a-2d6d-452b-a71f-b7f999fd6682.svg",
-            "variant": "Horizontal"
-          },
-          {
             "id": "logo-1",
             "png": "assets/joomshaper/d1a025e1-f114-4f30-8a70-04068c27800c.png",
             "svg": "assets/joomshaper/d1a025e1-f114-4f30-8a70-04068c27800c.png",
@@ -59,7 +51,7 @@
       "logoUrl": "assets/joomshaper/8639c129-fa9f-40d7-97fc-15793eb9aa29.svg",
       "tagline": "Grow your business with the world’s #1 tools for Joomla!",
       "createdAt": "2026-04-15T07:10:44.079Z",
-      "updatedAt": "2026-11-23T11:58:17.769Z"
+      "updatedAt": "2026-11-23T11:58:25.444Z"
     },
     {
       "id": "632c3fb2-4468-4e91-8d57-82dc0c38ad43",
