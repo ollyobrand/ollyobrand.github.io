@@ -312,14 +312,6 @@
       "assets": {
         "logos": [
           {
-            "id": "logo-1776247232871",
-            "png": "assets/easystore/6dcd973a-c2a3-4dde-b2e5-c23984d2cae0.svg",
-            "svg": "assets/easystore/6dcd973a-c2a3-4dde-b2e5-c23984d2cae0.svg",
-            "name": "Horizontal Logo",
-            "preview": "assets/easystore/6dcd973a-c2a3-4dde-b2e5-c23984d2cae0.svg",
-            "variant": "Horizontal"
-          },
-          {
             "id": "logo-1776247247543",
             "png": "assets/easystore/7d2e1623-394a-4771-9f16-f12aaadb8af6.svg",
             "svg": "assets/easystore/7d2e1623-394a-4771-9f16-f12aaadb8af6.svg",
@@ -401,7 +393,7 @@
       "logoUrl": "assets/easystore/4372f83d-a040-4bc0-a514-e1341921a7ed.svg",
       "tagline": "The Ultimate eCommerce Extension for Joomla",
       "createdAt": "2026-04-15T09:58:39.313Z",
-      "updatedAt": "2026-11-23T09:43:19.027Z"
+      "updatedAt": "2026-11-23T09:43:30.019Z"
     }
   ]
 }
