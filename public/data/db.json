@@ -259,14 +259,6 @@
             "name": "Dark Logo",
             "preview": "assets/sp-page-builder/36acd896-e185-4916-be14-769b079c61c7.svg",
             "variant": "Dark"
-          },
-          {
-            "id": "logo-1776246844822",
-            "png": "assets/sp-page-builder/b90c954b-86a8-4223-bbbc-06551a632522.svg",
-            "svg": "assets/sp-page-builder/b90c954b-86a8-4223-bbbc-06551a632522.svg",
-            "name": "Icon",
-            "preview": "assets/sp-page-builder/b90c954b-86a8-4223-bbbc-06551a632522.svg",
-            "variant": "Icon"
           }
         ],
         "colors": [
@@ -296,7 +288,7 @@
       "logoUrl": "assets/sp-page-builder/d49ebc0f-63c7-499b-97b5-a21f10abaa2a.svg",
       "tagline": "An extremely powerful drag & drop tool that lets you build sites visually and instantly.",
       "createdAt": "2026-04-15T08:05:16.424Z",
-      "updatedAt": "2026-11-23T10:11:06.722Z"
+      "updatedAt": "2026-11-23T10:11:21.703Z"
     },
     {
       "id": "9d257920-c65f-4859-8f9b-2a408e9de164",
