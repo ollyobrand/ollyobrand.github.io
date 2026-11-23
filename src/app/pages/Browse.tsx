@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { ChevronRight, Download, LogOut, Pencil, Plus, Search, Settings as SettingsIcon, X } from 'lucide-react';
+import { arrayMove } from '@dnd-kit/sortable';
 import imgLogo from 'figma:asset/7efdf963b465ea840cf15b3e1ac80db6d73ce1bb.png';
 import { assetUrl, Database, deleteProduct, downloadFile, loadAdminDb, loadPublicDb } from '../lib/api';
 import { AdminSession, getSession, refreshIfNeeded, SessionExpiredError, signOut } from '../lib/auth';
-import { AddColour, AdminApi, ConfirmDelete, LogoDrop, removeColour, removeLogo, removePart } from './AdminEdit';
+import { AddColour, AdminApi, ConfirmDelete, EditButton, EditColourDialog, EditLogoDialog, LogoDrop, moveColour, moveLogo, removeColour, removeLogo, removePart, SortItem, SortList } from './AdminEdit';
 import { CreateProductModal } from '../components/CreateProductModal';
 import { EditProductModal } from '../components/EditProductModal';
 import { AddFaviconModal } from '../components/AddFaviconModal';
@@ -15,7 +16,7 @@ import {
   accentOf, colourLabels, countLine, cssVariables, extOf, logoOriginal, Match, normalHex, rgbString,
   search, slugMap, slugOf, Tab, tabsFor, textOn,
 } from '../lib/brand';
-import { Product } from '../types';
+import { Color, Logo, Product } from '../types';
 import { buildAse, buildKit, fileBase, paletteJson, saveBlob } from '../lib/export';
 import { ColourSheet, FileSheet, FileTarget } from './FileSheet';
 import './browse.css';
@@ -77,6 +78,11 @@ function ProductIcon({ product }: { product: Product }) {
   );
 }
 
+/** Same shape as SortItem for visitors, who can't reorder. */
+function PlainItem({ className, children }: { id: string; className?: string; children: (grip: React.ReactNode) => React.ReactNode }) {
+  return <div className={className}>{children(null)}</div>;
+}
+
 // ---------- Product view ----------
 
 interface ProductViewProps {
@@ -89,7 +95,20 @@ interface ProductViewProps {
   admin?: AdminApi;
 }
 
-function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }: ProductViewProps) {
+function ProductView({ product: source, tab, onTab, onClose, toast, headingRef, admin }: ProductViewProps) {
+  // While an order change is saving, show the new order at once; the saved data replaces it.
+  const [optColours, setOptColours] = useState<Color[] | null>(null);
+  const [optLogos, setOptLogos] = useState<Logo[] | null>(null);
+  useEffect(() => {
+    setOptColours(null);
+    setOptLogos(null);
+  }, [source]);
+  const product = useMemo<Product>(
+    () => ({ ...source, assets: { ...source.assets, colors: optColours || source.assets.colors, logos: optLogos || source.assets.logos } }),
+    [source, optColours, optLogos],
+  );
+  const [editing, setEditing] = useState<null | { kind: 'colour'; index: number } | { kind: 'logo'; id: string }>(null);
+  const closeEdit = useCallback(() => setEditing(null), []);
   const tabs = admin
     ? [
         { id: 'logos' as Tab, label: 'Logos', count: product.assets.logos?.length || 0 },
@@ -128,8 +147,10 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
   const save = async (path: string, name: string) => {
     try {
       await downloadFile(path, name);
+      return true;
     } catch {
       toast(`Couldn't download ${name}. Check your connection and try again.`);
+      return false;
     }
   };
 
@@ -147,6 +168,14 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
   };
 
   const [sheet, setSheet] = useState<FileTarget | null>(null);
+  /** SVG logos open the format picker; a logo with a single format downloads at once. */
+  const getLogo = (logo: Logo) => {
+    const original = logoOriginal(logo);
+    if (original && original.ext !== 'svg') {
+      const file = `${fileBase(product, logo.name.trim())}.${original.ext}`;
+      save(original.path, file).then((ok) => ok && toast(`Saved ${file}`));
+    } else setSheet({ kind: 'logo', logo });
+  };
   const closeSheet = useCallback(() => setSheet(null), []);
   const press = useRef<number>(0);
   const pressed = useRef(false);
@@ -210,12 +239,24 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
           {heading('logos')}
           {product.assets.logos?.length || admin ? (
             <div className="sb-grid">
+              <SortList
+                ids={(product.assets.logos || []).map((l) => l.id)}
+                onReorder={async (from, to) => {
+                  const list = product.assets.logos || [];
+                  if (!admin || from < 0 || to < 0) return;
+                  setOptLogos(arrayMove(list, from, to));
+                  if (!(await moveLogo(admin, source, list[from].id, list[to].id, list[from].name.trim()))) setOptLogos(null);
+                }}
+              >
               {(product.assets.logos || []).map((logo) => {
                 const original = logoOriginal(logo);
                 const dark = /dark|white|reverse/i.test(`${logo.name} ${logo.variant}`);
+                const Item = admin ? SortItem : PlainItem;
                 return (
-                  <div className="sb-asset" key={logo.id}>
-                    <button className={`sb-plate${dark ? ' dark' : ''}`} onClick={() => setSheet({ kind: 'logo', logo })} aria-label={`${logo.name.trim()}: file options`}>
+                  <Item className="sb-asset" id={logo.id} key={logo.id}>
+                   {(grip) => (<>
+                    {admin && <span className="sb-grip-pos">{grip}</span>}
+                    <button className={`sb-plate${dark ? ' dark' : ''}`} onClick={() => getLogo(logo)} aria-label={`${logo.name.trim()}: get files`}>
                       <img src={assetUrl(logo.preview || original?.path)} alt="" loading="lazy" />
                     </button>
                     <div className="sb-asset-meta">
@@ -224,15 +265,18 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
                     </div>
                     <div className="sb-asset-btns">
                       {original && (
-                        <button className="sb-btn ghost" onClick={() => setSheet({ kind: 'logo', logo })}>
-                          <Download size={16} /> Download
+                        <button className="sb-btn ghost" onClick={() => getLogo(logo)}>
+                          Get
                         </button>
                       )}
+                      {admin && <EditButton label={logo.name.trim()} onClick={() => setEditing({ kind: 'logo', id: logo.id })} />}
                       {admin && <ConfirmDelete compact label={logo.name.trim()} onConfirm={() => removeLogo(admin, product, logo.id, logo.name.trim())} />}
                     </div>
-                  </div>
+                   </>)}
+                  </Item>
                 );
               })}
+              </SortList>
               {admin && <LogoDrop product={product} api={admin} />}
             </div>
           ) : (
@@ -246,7 +290,16 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
           {heading('colours')}
           {product.assets.colors?.length || admin ? (
             <>
-              <div className="sb-swatches">
+              <div className={`sb-swatches${admin ? ' admin' : ''}`}>
+               <SortList
+                ids={product.assets.colors.map((_, i) => `c${i}`)}
+                onReorder={async (from, to) => {
+                  const list = product.assets.colors;
+                  if (!admin || from < 0 || to < 0) return;
+                  setOptColours(arrayMove(list, from, to));
+                  if (!(await moveColour(admin, source, list[from], list[to]))) setOptColours(null);
+                }}
+               >
                 {product.assets.colors.map((c, i) => {
                   const hex = normalHex(c.hex);
                   const chip = (
@@ -275,14 +328,24 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
                     </button>
                   );
                   return admin ? (
-                    <div key={i} className="sb-chip-wrap">
-                      {chip}
-                      <ConfirmDelete compact label={`${labels[i]} ${hex}`} onConfirm={() => removeColour(admin, product, i)} />
-                    </div>
+                    <SortItem key={`${i}-${c.name}-${c.hex}`} id={`c${i}`} className="sb-chip-wrap">
+                      {(grip) => (
+                        <>
+                          {chip}
+                          <div className="sb-chip-tools">
+                            {grip}
+                            <span className="sb-chip-spacer" />
+                            <EditButton label={`${labels[i]} ${hex}`} onClick={() => setEditing({ kind: 'colour', index: i })} />
+                            <ConfirmDelete compact label={`${labels[i]} ${hex}`} onConfirm={() => removeColour(admin, product, i)} />
+                          </div>
+                        </>
+                      )}
+                    </SortItem>
                   ) : (
                     chip
                   );
                 })}
+               </SortList>
               </div>
               {admin && <AddColour product={product} api={admin} />}
               <p className="sb-mono sb-hint">Tap to copy hex. Press and hold, or right-click, for RGB, HSL and CSS.</p>
@@ -328,7 +391,7 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
                 <button className="sb-plate" onClick={() => setSheet({ kind: 'favicon' })} aria-label="Favicon: file options"><img src={assetUrl(fav.preview || path)} alt="" /></button>
                 <div className="sb-asset-meta"><b>Favicon</b><span className="sb-mono">{ext === 'svg' ? 'ICO · PNG · SVG' : ext.toUpperCase()}</span></div>
                 <button className="sb-btn ghost" onClick={() => setSheet({ kind: 'favicon' })}>
-                  <Download size={16} /> Download
+                  Get
                 </button>
               </div>
             </div>
@@ -368,6 +431,8 @@ function ProductView({ product, tab, onTab, onClose, toast, headingRef, admin }:
         )}
       </div>
       {sheet && sheet.kind !== 'colour' && <FileSheet product={product} target={sheet} onClose={closeSheet} toast={toast} copy={copyText} />}
+      {editing?.kind === 'colour' && admin && <EditColourDialog product={source} index={editing.index} api={admin} onClose={closeEdit} />}
+      {editing?.kind === 'logo' && admin && <EditLogoDialog product={source} logoId={editing.id} api={admin} onClose={closeEdit} />}
       {sheet && sheet.kind === 'colour' && <ColourSheet product={product} target={sheet} onClose={closeSheet} toast={toast} copy={copyText} />}
     </div>
   );

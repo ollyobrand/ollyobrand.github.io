@@ -3,11 +3,15 @@
  * Every save is one commit to the repo, exactly as before (lib/api.ts mutateDb).
  */
 import { useRef, useState } from 'react';
-import { AlertTriangle, Loader2, Plus, Trash2, Upload } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, ArrowRight, GripVertical, Loader2, Pencil, Plus, Trash2, Upload } from 'lucide-react';
+import { closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { arrayMove, rectSortingStrategy, SortableContext, sortableKeyboardCoordinates, useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { updateProduct, uploadFile } from '../lib/api';
 import { extOf, normalHex, rgbString } from '../lib/brand';
 import { SessionExpiredError } from '../lib/auth';
-import { Logo, Product } from '../types';
+import { Color, Logo, Product } from '../types';
+import { Frame, useSheetKeys } from './FileSheet';
 
 export interface AdminApi {
   /** Reload the product list from GitHub after a save. */
@@ -288,5 +292,249 @@ export function AddColour({ product, api }: { product: Product; api: AdminApi })
         </p>
       )}
     </form>
+  );
+}
+
+// ---------- Reorder ----------
+
+/** Drag-and-drop (touch, mouse and keyboard) over a list of ids; reports the old and new position. */
+export function SortList({ ids, onReorder, children }: { ids: string[]; onReorder: (from: number, to: number) => void; children: React.ReactNode }) {
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
+  return (
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragEnd={({ active, over }) => {
+        if (!over || active.id === over.id) return;
+        onReorder(ids.indexOf(String(active.id)), ids.indexOf(String(over.id)));
+      }}
+    >
+      <SortableContext items={ids} strategy={rectSortingStrategy}>
+        {children}
+      </SortableContext>
+    </DndContext>
+  );
+}
+
+/** One draggable item. `children` receives the grip button to place wherever it fits. */
+export function SortItem({ id, className, children }: { id: string; className?: string; children: (grip: React.ReactNode) => React.ReactNode }) {
+  const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition, isDragging } = useSortable({ id });
+  const grip = (
+    <button type="button" ref={setActivatorNodeRef} className="sb-btn ghost icon sb-grip" aria-label="Drag to reorder" {...attributes} {...listeners}>
+      <GripVertical size={16} />
+    </button>
+  );
+  return (
+    <div ref={setNodeRef} className={`${className || ''}${isDragging ? ' dragging' : ''}`} style={{ transform: CSS.Transform.toString(transform), transition }}>
+      {children(grip)}
+    </div>
+  );
+}
+
+const sameColour = (a: Color, b: Color) => a.name === b.name && normalHex(a.hex) === normalHex(b.hex);
+const CHANGED = 'The palette changed while you were editing. Reload the page and try again.';
+
+/** Move one colour to where another one sits. Both are found by name and hex, so a save by someone else can't misplace them. */
+export function moveColour(api: AdminApi, product: Product, moving: Color, target: Color) {
+  return save(
+    api,
+    () =>
+      updateProduct(
+        product.id,
+        (p) => {
+          const list = [...(p.assets.colors || [])];
+          const from = list.findIndex((c) => sameColour(c, moving));
+          const to = list.findIndex((c) => sameColour(c, target));
+          if (from < 0 || to < 0) throw new Error(CHANGED);
+          return { ...p, assets: { ...p.assets, colors: arrayMove(list, from, to) } };
+        },
+        `Reorder colors: move ${moving.name} (${normalHex(moving.hex)}) in ${product.name}`,
+      ),
+    'Order saved',
+    "Couldn't save the order",
+  );
+}
+
+export function moveLogo(api: AdminApi, product: Product, movingId: string, targetId: string, name: string) {
+  return save(
+    api,
+    () =>
+      updateProduct(
+        product.id,
+        (p) => {
+          const list = [...(p.assets.logos || [])];
+          const from = list.findIndex((l) => l.id === movingId);
+          const to = list.findIndex((l) => l.id === targetId);
+          if (from < 0 || to < 0) throw new Error('The logos changed while you were editing. Reload the page and try again.');
+          return { ...p, assets: { ...p.assets, logos: arrayMove(list, from, to) } };
+        },
+        `Reorder logos: move ${name} in ${product.name}`,
+      ),
+    'Order saved',
+    "Couldn't save the order",
+  );
+}
+
+// ---------- Edit ----------
+
+/** Pencil button used on every editable color and logo. */
+export function EditButton({ label, onClick }: { label: string; onClick: () => void }) {
+  return (
+    <button type="button" className="sb-btn ghost icon" onClick={onClick} aria-label={`Edit ${label}`}>
+      <Pencil size={16} />
+    </button>
+  );
+}
+
+/** Edit a colour's name and hex, or step it earlier or later in the palette. */
+export function EditColourDialog({ product, index, api, onClose }: { product: Product; index: number; api: AdminApi; onClose: () => void }) {
+  const ref = useSheetKeys(onClose);
+  const colours = product.assets.colors || [];
+  const current = colours[index];
+  const [name, setName] = useState(current?.name || '');
+  const [hex, setHex] = useState(current ? normalHex(current.hex) : '#');
+  const [busy, setBusy] = useState(false);
+  if (!current) return null;
+  const valid = /^#?([0-9a-f]{6}|[0-9a-f]{3})$/i.test(hex.trim());
+  const clean = valid ? normalHex(hex.trim()) : '';
+  const changed = name.trim() !== current.name.trim() || (valid && clean !== normalHex(current.hex));
+  const dupeName = colours.some((c, i) => i !== index && c.name.trim().toLowerCase() === name.trim().toLowerCase());
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim()) return api.toast('Give the color a name, for example Primary or Accent');
+    if (!valid) return api.toast('Enter a hex code like #2151ED');
+    if (!changed) return onClose();
+    setBusy(true);
+    const ok = await save(
+      api,
+      () =>
+        updateProduct(
+          product.id,
+          (p) => {
+            const list = [...(p.assets.colors || [])];
+            const at = list.findIndex((c) => sameColour(c, current));
+            if (at < 0) throw new Error(CHANGED);
+            list[at] = { ...list[at], name: name.trim(), hex: clean, rgb: `rgb(${rgbString(clean)})` };
+            return { ...p, assets: { ...p.assets, colors: list } };
+          },
+          `Edit color: ${current.name.trim()} (${normalHex(current.hex)}) to ${name.trim()} (${clean}) in ${product.name}`,
+        ),
+      `Saved ${name.trim()}`,
+      "Couldn't save the color",
+    );
+    setBusy(false);
+    if (ok) onClose();
+  };
+
+  const step = async (by: -1 | 1) => {
+    const target = colours[index + by];
+    if (!target) return;
+    setBusy(true);
+    const ok = await moveColour(api, product, current, target);
+    setBusy(false);
+    if (ok) onClose();
+  };
+
+  return (
+    <Frame title={`Edit ${current.name.trim()}`} onClose={onClose} sheetRef={ref}>
+      <form className="sb-file-body" onSubmit={submit}>
+        <div className="sb-colour-band" style={{ background: clean || normalHex(current.hex) }}>
+          <input type="color" value={clean || '#ffffff'} onChange={(e) => setHex(e.target.value.toUpperCase())} aria-label="Pick a color" />
+        </div>
+        <label className="sb-field">
+          <span className="sb-mono">Name</span>
+          <input value={name} onChange={(e) => setName(e.target.value)} />
+        </label>
+        <label className="sb-field sb-field-hex">
+          <span className="sb-mono">Hex</span>
+          <input value={hex} onChange={(e) => setHex(e.target.value)} spellCheck={false} aria-invalid={!valid} />
+        </label>
+        {dupeName && (
+          <p className="sb-warn" role="status">
+            <AlertTriangle size={14} aria-hidden="true" />
+            "{name.trim()}" is already used in this palette. Visitors will see numbered names.
+          </p>
+        )}
+        <div className="sb-actions">
+          <button className="sb-btn" type="submit" disabled={busy || !valid || !name.trim()}>
+            {busy ? <Loader2 size={16} className="sb-spin" /> : null}
+            {busy ? 'Saving…' : 'Save'}
+          </button>
+          <button className="sb-btn ghost" type="button" onClick={() => step(-1)} disabled={busy || index === 0}>
+            <ArrowLeft size={16} /> Earlier
+          </button>
+          <button className="sb-btn ghost" type="button" onClick={() => step(1)} disabled={busy || index === colours.length - 1}>
+            Later <ArrowRight size={16} />
+          </button>
+        </div>
+      </form>
+    </Frame>
+  );
+}
+
+/** Rename a logo, or step it earlier or later among the logos. */
+export function EditLogoDialog({ product, logoId, api, onClose }: { product: Product; logoId: string; api: AdminApi; onClose: () => void }) {
+  const ref = useSheetKeys(onClose);
+  const logos = product.assets.logos || [];
+  const index = logos.findIndex((l) => l.id === logoId);
+  const current = logos[index];
+  const [name, setName] = useState(current?.name.trim() || '');
+  const [busy, setBusy] = useState(false);
+  if (!current) return null;
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim()) return api.toast('Give the logo a name');
+    if (name.trim() === current.name.trim()) return onClose();
+    setBusy(true);
+    const ok = await save(
+      api,
+      () =>
+        updateProduct(
+          product.id,
+          (p) => ({ ...p, assets: { ...p.assets, logos: (p.assets.logos || []).map((l) => (l.id === logoId ? { ...l, name: name.trim() } : l)) } }),
+          `Rename logo: ${current.name.trim()} to ${name.trim()} in ${product.name}`,
+        ),
+      'Logo renamed',
+      "Couldn't rename the logo",
+    );
+    setBusy(false);
+    if (ok) onClose();
+  };
+
+  const step = async (by: -1 | 1) => {
+    const target = logos[index + by];
+    if (!target) return;
+    setBusy(true);
+    const ok = await moveLogo(api, product, current.id, target.id, current.name.trim());
+    setBusy(false);
+    if (ok) onClose();
+  };
+
+  return (
+    <Frame title={`Edit ${current.name.trim()}`} onClose={onClose} sheetRef={ref}>
+      <form className="sb-file-body" onSubmit={submit}>
+        <label className="sb-field">
+          <span className="sb-mono">Name</span>
+          <input value={name} onChange={(e) => setName(e.target.value)} />
+        </label>
+        <div className="sb-actions">
+          <button className="sb-btn" type="submit" disabled={busy || !name.trim()}>
+            {busy ? <Loader2 size={16} className="sb-spin" /> : null}
+            {busy ? 'Saving…' : 'Save'}
+          </button>
+          <button className="sb-btn ghost" type="button" onClick={() => step(-1)} disabled={busy || index === 0}>
+            <ArrowLeft size={16} /> Earlier
+          </button>
+          <button className="sb-btn ghost" type="button" onClick={() => step(1)} disabled={busy || index === logos.length - 1}>
+            Later <ArrowRight size={16} />
+          </button>
+        </div>
+      </form>
+    </Frame>
   );
 }
