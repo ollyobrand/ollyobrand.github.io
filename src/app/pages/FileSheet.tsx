@@ -17,7 +17,7 @@ interface SheetProps {
   copy: (text: string) => Promise<boolean>;
 }
 
-function useSheetKeys(onClose: () => void) {
+export function useSheetKeys(onClose: () => void) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const prev = document.activeElement as HTMLElement | null;
@@ -37,7 +37,7 @@ function useSheetKeys(onClose: () => void) {
   return ref;
 }
 
-function Frame({ title, onClose, children, sheetRef }: { title: string; onClose: () => void; children: React.ReactNode; sheetRef: React.Ref<HTMLDivElement> }) {
+export function Frame({ title, onClose, children, sheetRef }: { title: string; onClose: () => void; children: React.ReactNode; sheetRef: React.Ref<HTMLDivElement> }) {
   return (
     <>
       <div className="sb-file-scrim" onClick={onClose} aria-hidden="true" />
