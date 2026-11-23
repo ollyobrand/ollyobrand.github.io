@@ -77,14 +77,6 @@
       "assets": {
         "logos": [
           {
-            "id": "logo-0",
-            "png": "assets/growfund/e2a657af-da05-4a86-831b-0aa29e584608.svg",
-            "svg": "assets/growfund/e2a657af-da05-4a86-831b-0aa29e584608.svg",
-            "name": "Horizontal Logo",
-            "preview": "assets/growfund/e2a657af-da05-4a86-831b-0aa29e584608.svg",
-            "variant": "Horizontal"
-          },
-          {
             "id": "logo-1776239011536-0",
             "png": "assets/growfund/450ceffb-5e78-4410-80cf-f8684bc0520f.svg",
             "svg": "assets/growfund/450ceffb-5e78-4410-80cf-f8684bc0520f.svg",
@@ -125,7 +117,7 @@
       "logoUrl": "assets/growfund/7580d925-22fb-4e0c-94c7-124e1d8e4f96.svg",
       "tagline": "The complete donation crowdfunding solution for WordPress",
       "createdAt": "2026-04-15T07:24:54.598Z",
-      "updatedAt": "2026-04-15T08:08:44.394Z"
+      "updatedAt": "2026-11-23T11:45:06.217Z"
     },
     {
       "id": "21278f71-59ee-4c33-87a7-3adabb8b4879",
