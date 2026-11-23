@@ -289,16 +289,16 @@
           }
         ],
         "favicon": {
-          "ico": "assets/sp-page-builder/1212ed90-5688-4190-a3b3-066be159ab34.svg",
-          "png": "assets/sp-page-builder/1212ed90-5688-4190-a3b3-066be159ab34.svg",
-          "svg": "assets/sp-page-builder/1212ed90-5688-4190-a3b3-066be159ab34.svg",
-          "preview": "assets/sp-page-builder/1212ed90-5688-4190-a3b3-066be159ab34.svg"
+          "preview": "assets/favicons/f6be7331-6951-4256-8d0f-7c4602cdc1cb/e38cd194-7dfd-4094-a7ad-ee6d060c6e19.svg",
+          "svg": "assets/favicons/f6be7331-6951-4256-8d0f-7c4602cdc1cb/e38cd194-7dfd-4094-a7ad-ee6d060c6e19.svg",
+          "png": "assets/favicons/f6be7331-6951-4256-8d0f-7c4602cdc1cb/e38cd194-7dfd-4094-a7ad-ee6d060c6e19.svg",
+          "ico": "assets/favicons/f6be7331-6951-4256-8d0f-7c4602cdc1cb/e38cd194-7dfd-4094-a7ad-ee6d060c6e19.svg"
         }
       },
       "logoUrl": "assets/product-thumbnails/755d2f0a-3783-4d23-bb4f-7fc92d801b5f.svg",
       "tagline": "An extremely powerful drag & drop tool that lets you build sites visually and instantly.",
       "createdAt": "2026-04-15T08:05:16.424Z",
-      "updatedAt": "2026-11-23T10:15:51.995Z"
+      "updatedAt": "2026-11-23T10:17:27.004Z"
     },
     {
       "id": "9d257920-c65f-4859-8f9b-2a408e9de164",
