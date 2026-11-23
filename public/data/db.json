@@ -159,6 +159,13 @@
             "variant": "dark",
             "preview": "assets/logos/21278f71-59ee-4c33-87a7-3adabb8b4879/97ed6131-8f8b-4906-be5c-cc4bc151793a.svg",
             "svg": "assets/logos/21278f71-59ee-4c33-87a7-3adabb8b4879/97ed6131-8f8b-4906-be5c-cc4bc151793a.svg"
+          },
+          {
+            "id": "logo-1795434102278-0",
+            "name": "Tutor LMS favicon",
+            "variant": "icon",
+            "preview": "assets/logos/21278f71-59ee-4c33-87a7-3adabb8b4879/6950d28d-d671-4eef-997d-efc38d716bce.svg",
+            "svg": "assets/logos/21278f71-59ee-4c33-87a7-3adabb8b4879/6950d28d-d671-4eef-997d-efc38d716bce.svg"
           }
         ],
         "colors": [
@@ -178,7 +185,7 @@
       "logoUrl": "assets/tutor-lms/77c8a678-a49f-4020-991e-6cc933d16049.svg",
       "tagline": "eLearning solution that works for you",
       "createdAt": "2026-04-15T07:41:04.135Z",
-      "updatedAt": "2026-11-23T11:40:54.539Z"
+      "updatedAt": "2026-11-23T11:41:43.994Z"
     },
     {
       "id": "b8d6ee11-a717-4d91-8371-370d763dd82c",
