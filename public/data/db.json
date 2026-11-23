@@ -47,11 +47,6 @@
             "hex": "#FF7416",
             "rgb": "rgb(255, 116, 22)",
             "name": "Secondary"
-          },
-          {
-            "hex": "#6DE8BD",
-            "rgb": "rgb(109, 232, 189)",
-            "name": "Secondary"
           }
         ],
         "favicon": {
@@ -64,7 +59,7 @@
       "logoUrl": "assets/joomshaper/8639c129-fa9f-40d7-97fc-15793eb9aa29.svg",
       "tagline": "Grow your business with the world’s #1 tools for Joomla!",
       "createdAt": "2026-04-15T07:10:44.079Z",
-      "updatedAt": "2026-11-23T11:58:10.428Z"
+      "updatedAt": "2026-11-23T11:58:17.769Z"
     },
     {
       "id": "632c3fb2-4468-4e91-8d57-82dc0c38ad43",
