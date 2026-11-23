@@ -388,16 +388,16 @@
           }
         ],
         "favicon": {
-          "ico": "assets/easystore/974033f3-ad17-4e46-9f6c-565558dd7c34.svg",
-          "png": "assets/easystore/974033f3-ad17-4e46-9f6c-565558dd7c34.svg",
-          "svg": "assets/easystore/974033f3-ad17-4e46-9f6c-565558dd7c34.svg",
-          "preview": "assets/easystore/974033f3-ad17-4e46-9f6c-565558dd7c34.svg"
+          "preview": "assets/favicons/9d257920-c65f-4859-8f9b-2a408e9de164/7e388e6d-5490-4aee-8700-fdb44dc03672.svg",
+          "svg": "assets/favicons/9d257920-c65f-4859-8f9b-2a408e9de164/7e388e6d-5490-4aee-8700-fdb44dc03672.svg",
+          "png": "assets/favicons/9d257920-c65f-4859-8f9b-2a408e9de164/7e388e6d-5490-4aee-8700-fdb44dc03672.svg",
+          "ico": "assets/favicons/9d257920-c65f-4859-8f9b-2a408e9de164/7e388e6d-5490-4aee-8700-fdb44dc03672.svg"
         }
       },
       "logoUrl": "assets/easystore/4372f83d-a040-4bc0-a514-e1341921a7ed.svg",
       "tagline": "The Ultimate eCommerce Extension for Joomla",
       "createdAt": "2026-04-15T09:58:39.313Z",
-      "updatedAt": "2026-11-23T09:57:11.999Z"
+      "updatedAt": "2026-11-23T10:05:29.100Z"
     }
   ]
 }
