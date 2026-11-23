@@ -66,18 +66,18 @@
       "assets": {
         "logos": [
           {
-            "id": "logo-1795434450867-1",
-            "name": "Dark",
-            "variant": "dark",
-            "preview": "assets/logos/632c3fb2-4468-4e91-8d57-82dc0c38ad43/7c702a07-9535-4df1-862a-bc2b6b0d0b20.svg",
-            "svg": "assets/logos/632c3fb2-4468-4e91-8d57-82dc0c38ad43/7c702a07-9535-4df1-862a-bc2b6b0d0b20.svg"
-          },
-          {
             "id": "logo-1795434319678-1",
             "name": "Growfund Logo",
             "variant": "horizontal",
             "preview": "assets/logos/632c3fb2-4468-4e91-8d57-82dc0c38ad43/e3374454-ded0-4d97-8f32-fbd9e3ef2f0a.svg",
             "svg": "assets/logos/632c3fb2-4468-4e91-8d57-82dc0c38ad43/e3374454-ded0-4d97-8f32-fbd9e3ef2f0a.svg"
+          },
+          {
+            "id": "logo-1795434450867-1",
+            "name": "Dark",
+            "variant": "dark",
+            "preview": "assets/logos/632c3fb2-4468-4e91-8d57-82dc0c38ad43/7c702a07-9535-4df1-862a-bc2b6b0d0b20.svg",
+            "svg": "assets/logos/632c3fb2-4468-4e91-8d57-82dc0c38ad43/7c702a07-9535-4df1-862a-bc2b6b0d0b20.svg"
           },
           {
             "id": "logo-1795434547527-1",
@@ -126,7 +126,7 @@
       "logoUrl": "assets/growfund/7580d925-22fb-4e0c-94c7-124e1d8e4f96.svg",
       "tagline": "The complete donation crowdfunding solution for WordPress",
       "createdAt": "2026-04-15T07:24:54.598Z",
-      "updatedAt": "2026-11-23T12:04:23.743Z"
+      "updatedAt": "2026-11-23T12:04:36.274Z"
     },
     {
       "id": "21278f71-59ee-4c33-87a7-3adabb8b4879",
