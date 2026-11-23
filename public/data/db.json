@@ -25,6 +25,20 @@
             "variant": "dark",
             "preview": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/038ac856-c58a-47b1-9b57-3f61e923cdab.svg",
             "svg": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/038ac856-c58a-47b1-9b57-3f61e923cdab.svg"
+          },
+          {
+            "id": "logo-1795435215638-0",
+            "name": "Dark",
+            "variant": "dark",
+            "preview": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/12f6de00-c190-4b69-8f07-2f3b6d71e7c8.png",
+            "png": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/12f6de00-c190-4b69-8f07-2f3b6d71e7c8.png"
+          },
+          {
+            "id": "logo-1795435216725-1",
+            "name": "Dark",
+            "variant": "dark",
+            "preview": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/c8b9680c-af7b-4429-84b3-833efe0a3c67.svg",
+            "svg": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/c8b9680c-af7b-4429-84b3-833efe0a3c67.svg"
           }
         ],
         "colors": [
@@ -44,7 +58,7 @@
       "logoUrl": "assets/joomshaper/8639c129-fa9f-40d7-97fc-15793eb9aa29.svg",
       "tagline": "Grow your business with the world’s #1 tools for Joomla!",
       "createdAt": "2026-04-15T07:10:44.079Z",
-      "updatedAt": "2026-11-23T12:00:20.438Z"
+      "updatedAt": "2026-11-23T12:00:33.568Z"
     },
     {
       "id": "632c3fb2-4468-4e91-8d57-82dc0c38ad43",
