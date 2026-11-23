@@ -75,7 +75,22 @@
       "id": "632c3fb2-4468-4e91-8d57-82dc0c38ad43",
       "name": "Growfund",
       "assets": {
-        "logos": [],
+        "logos": [
+          {
+            "id": "logo-1795434318654-0",
+            "name": "Growfund Logo",
+            "variant": "horizontal",
+            "preview": "assets/logos/632c3fb2-4468-4e91-8d57-82dc0c38ad43/4c0acc6f-a787-4683-80a3-a0088c63ebb8.png",
+            "png": "assets/logos/632c3fb2-4468-4e91-8d57-82dc0c38ad43/4c0acc6f-a787-4683-80a3-a0088c63ebb8.png"
+          },
+          {
+            "id": "logo-1795434319678-1",
+            "name": "Growfund Logo",
+            "variant": "horizontal",
+            "preview": "assets/logos/632c3fb2-4468-4e91-8d57-82dc0c38ad43/e3374454-ded0-4d97-8f32-fbd9e3ef2f0a.svg",
+            "svg": "assets/logos/632c3fb2-4468-4e91-8d57-82dc0c38ad43/e3374454-ded0-4d97-8f32-fbd9e3ef2f0a.svg"
+          }
+        ],
         "colors": [
           {
             "hex": "#179647",
@@ -108,7 +123,7 @@
       "logoUrl": "assets/growfund/7580d925-22fb-4e0c-94c7-124e1d8e4f96.svg",
       "tagline": "The complete donation crowdfunding solution for WordPress",
       "createdAt": "2026-04-15T07:24:54.598Z",
-      "updatedAt": "2026-11-23T11:45:16.209Z"
+      "updatedAt": "2026-11-23T11:45:27.817Z"
     },
     {
       "id": "21278f71-59ee-4c33-87a7-3adabb8b4879",
