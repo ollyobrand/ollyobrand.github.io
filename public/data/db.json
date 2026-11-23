@@ -138,6 +138,20 @@
             "variant": "horizontal",
             "preview": "assets/logos/21278f71-59ee-4c33-87a7-3adabb8b4879/457c33dd-28f2-4d6f-90c8-af6446179a24.svg",
             "svg": "assets/logos/21278f71-59ee-4c33-87a7-3adabb8b4879/457c33dd-28f2-4d6f-90c8-af6446179a24.svg"
+          },
+          {
+            "id": "logo-1795433960374-0",
+            "name": "White",
+            "variant": "dark",
+            "preview": "assets/logos/21278f71-59ee-4c33-87a7-3adabb8b4879/8a02af1b-dac6-48a1-a079-84e1ec69abc8.png",
+            "png": "assets/logos/21278f71-59ee-4c33-87a7-3adabb8b4879/8a02af1b-dac6-48a1-a079-84e1ec69abc8.png"
+          },
+          {
+            "id": "logo-1795433961385-1",
+            "name": "White",
+            "variant": "dark",
+            "preview": "assets/logos/21278f71-59ee-4c33-87a7-3adabb8b4879/956ab97b-d84b-4d99-b57d-6befe01c6673.svg",
+            "svg": "assets/logos/21278f71-59ee-4c33-87a7-3adabb8b4879/956ab97b-d84b-4d99-b57d-6befe01c6673.svg"
           }
         ],
         "colors": [
@@ -177,7 +191,7 @@
       "logoUrl": "assets/tutor-lms/77c8a678-a49f-4020-991e-6cc933d16049.svg",
       "tagline": "eLearning solution that works for you",
       "createdAt": "2026-04-15T07:41:04.135Z",
-      "updatedAt": "2026-11-23T11:38:59.448Z"
+      "updatedAt": "2026-11-23T11:39:23.041Z"
     },
     {
       "id": "b8d6ee11-a717-4d91-8371-370d763dd82c",
