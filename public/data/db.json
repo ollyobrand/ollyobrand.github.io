@@ -200,15 +200,7 @@
       "id": "b8d6ee11-a717-4d91-8371-370d763dd82c",
       "name": "Kirki",
       "assets": {
-        "logos": [
-          {
-            "id": "logo-1795431970402-0",
-            "name": "Horizontal Logo",
-            "variant": "horizontal",
-            "preview": "assets/logos/b8d6ee11-a717-4d91-8371-370d763dd82c/7c97fffd-792f-4fb7-9a96-62595fa6d80e.png",
-            "png": "assets/logos/b8d6ee11-a717-4d91-8371-370d763dd82c/7c97fffd-792f-4fb7-9a96-62595fa6d80e.png"
-          }
-        ],
+        "logos": [],
         "colors": [
           {
             "name": "Primary",
@@ -251,7 +243,7 @@
       "logoUrl": "assets/kirki/4313f0d4-5006-48e7-a2ac-a5f98409a681.svg",
       "tagline": "No-Code Site Builder for WordPress",
       "createdAt": "2026-04-15T07:57:33.769Z",
-      "updatedAt": "2026-11-23T11:06:35.662Z"
+      "updatedAt": "2026-11-23T11:06:45.179Z"
     },
     {
       "id": "f6be7331-6951-4256-8d0f-7c4602cdc1cb",
