@@ -312,13 +312,6 @@
       "assets": {
         "logos": [
           {
-            "id": "logo-1795427253051-1",
-            "name": "EasyStore LOGO",
-            "variant": "horizontal",
-            "preview": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/31ccc26a-1af0-4e85-a1c2-430f4f8f36b6.svg",
-            "svg": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/31ccc26a-1af0-4e85-a1c2-430f4f8f36b6.svg"
-          },
-          {
             "id": "logo-1795427389168-1",
             "name": "EasyStore LOGO white",
             "variant": "dark",
@@ -392,7 +385,7 @@
       "logoUrl": "assets/easystore/4372f83d-a040-4bc0-a514-e1341921a7ed.svg",
       "tagline": "The Ultimate eCommerce Extension for Joomla",
       "createdAt": "2026-04-15T09:58:39.313Z",
-      "updatedAt": "2026-11-23T09:50:45.136Z"
+      "updatedAt": "2026-11-23T09:50:51.652Z"
     }
   ]
 }
