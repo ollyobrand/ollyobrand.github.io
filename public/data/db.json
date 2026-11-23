@@ -221,6 +221,13 @@
             "variant": "dark",
             "preview": "assets/logos/b8d6ee11-a717-4d91-8371-370d763dd82c/92aca051-2d7d-415c-9dbb-fd5e09439146.svg",
             "svg": "assets/logos/b8d6ee11-a717-4d91-8371-370d763dd82c/92aca051-2d7d-415c-9dbb-fd5e09439146.svg"
+          },
+          {
+            "id": "logo-1795433555315-0",
+            "name": "Icon",
+            "variant": "icon",
+            "preview": "assets/logos/b8d6ee11-a717-4d91-8371-370d763dd82c/c7864091-3508-482c-a7c1-60f81761654d.svg",
+            "svg": "assets/logos/b8d6ee11-a717-4d91-8371-370d763dd82c/c7864091-3508-482c-a7c1-60f81761654d.svg"
           }
         ],
         "colors": [
@@ -265,7 +272,7 @@
       "logoUrl": "assets/kirki/4313f0d4-5006-48e7-a2ac-a5f98409a681.svg",
       "tagline": "No-Code Site Builder for WordPress",
       "createdAt": "2026-04-15T07:57:33.769Z",
-      "updatedAt": "2026-11-23T11:32:02.606Z"
+      "updatedAt": "2026-11-23T11:32:36.767Z"
     },
     {
       "id": "f6be7331-6951-4256-8d0f-7c4602cdc1cb",
