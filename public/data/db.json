@@ -253,13 +253,6 @@
       "assets": {
         "logos": [
           {
-            "id": "logo-1795428726637-0",
-            "name": "Horizontal Logo",
-            "variant": "horizontal",
-            "preview": "assets/logos/f6be7331-6951-4256-8d0f-7c4602cdc1cb/5411d161-51de-4329-bcf5-5a4f64d1283b.png",
-            "png": "assets/logos/f6be7331-6951-4256-8d0f-7c4602cdc1cb/5411d161-51de-4329-bcf5-5a4f64d1283b.png"
-          },
-          {
             "id": "logo-1795428727695-1",
             "name": "Horizontal Logo",
             "variant": "horizontal",
@@ -294,7 +287,7 @@
       "logoUrl": "assets/sp-page-builder/d49ebc0f-63c7-499b-97b5-a21f10abaa2a.svg",
       "tagline": "An extremely powerful drag & drop tool that lets you build sites visually and instantly.",
       "createdAt": "2026-04-15T08:05:16.424Z",
-      "updatedAt": "2026-11-23T10:12:09.163Z"
+      "updatedAt": "2026-11-23T10:13:02.344Z"
     },
     {
       "id": "9d257920-c65f-4859-8f9b-2a408e9de164",
