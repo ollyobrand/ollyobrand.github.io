@@ -1,10 +1,10 @@
 {
   "settings": {
-    "updatedAt": "2026-04-03T07:10:30.403Z",
+    "organizationName": "Ollyo Brand Assets",
+    "organizationLogo": "assets/organization/db7a401e-6251-4a1d-b178-9deec702db0f.jpg",
     "adminEmail": "",
     "accentColor": "#2fce2c",
-    "organizationLogo": "assets/organization/db7a401e-6251-4a1d-b178-9deec702db0f.jpg",
-    "organizationName": "Ollyo Brand Assets"
+    "updatedAt": "2026-04-03T07:10:30.403Z"
   },
   "products": [
     {
@@ -67,7 +67,7 @@
         }
       },
       "logoUrl": "assets/joomshaper/8639c129-fa9f-40d7-97fc-15793eb9aa29.svg",
-      "tagline": "Grow your business with the world\u2019s #1 tools for Joomla!",
+      "tagline": "Grow your business with the world’s #1 tools for Joomla!",
       "createdAt": "2026-04-15T07:10:44.079Z",
       "updatedAt": "2026-04-15T07:42:49.289Z"
     },
@@ -371,6 +371,11 @@
             "hex": "#000000",
             "rgb": "rgb(0, 0, 0)",
             "name": "Primary"
+          },
+          {
+            "name": "Primary",
+            "hex": "#22A4FF",
+            "rgb": "rgb(34, 164, 255)"
           }
         ],
         "favicon": {
@@ -383,7 +388,7 @@
       "logoUrl": "assets/easystore/4372f83d-a040-4bc0-a514-e1341921a7ed.svg",
       "tagline": "The Ultimate eCommerce Extension for Joomla",
       "createdAt": "2026-04-15T09:58:39.313Z",
-      "updatedAt": "2026-04-15T10:16:31.669Z"
+      "updatedAt": "2026-11-23T09:32:06.214Z"
     }
   ]
 }
