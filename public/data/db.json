@@ -310,7 +310,22 @@
       "id": "9d257920-c65f-4859-8f9b-2a408e9de164",
       "name": "EasyStore",
       "assets": {
-        "logos": [],
+        "logos": [
+          {
+            "id": "logo-1795427711393-0",
+            "name": "Horizontal",
+            "variant": "horizontal",
+            "preview": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/85ad112a-42e1-4d63-95a4-045a3f08551f.png",
+            "png": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/85ad112a-42e1-4d63-95a4-045a3f08551f.png"
+          },
+          {
+            "id": "logo-1795427712618-1",
+            "name": "Horizontal",
+            "variant": "horizontal",
+            "preview": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/c00d7fcc-a9ee-48f6-891b-2a7b6e6dc9fb.svg",
+            "svg": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/c00d7fcc-a9ee-48f6-891b-2a7b6e6dc9fb.svg"
+          }
+        ],
         "colors": [
           {
             "name": "Primary01",
@@ -363,7 +378,7 @@
       "logoUrl": "assets/easystore/4372f83d-a040-4bc0-a514-e1341921a7ed.svg",
       "tagline": "The Ultimate eCommerce Extension for Joomla",
       "createdAt": "2026-04-15T09:58:39.313Z",
-      "updatedAt": "2026-11-23T09:51:24.138Z"
+      "updatedAt": "2026-11-23T09:55:14.489Z"
     }
   ]
 }
