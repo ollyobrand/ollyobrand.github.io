@@ -338,11 +338,6 @@
         ],
         "colors": [
           {
-            "hex": "#046151",
-            "rgb": "rgb(4, 97, 81)",
-            "name": "Primary"
-          },
-          {
             "hex": "#FFEB98",
             "rgb": "rgb(255, 235, 152)",
             "name": "Primary"
@@ -388,7 +383,7 @@
       "logoUrl": "assets/easystore/4372f83d-a040-4bc0-a514-e1341921a7ed.svg",
       "tagline": "The Ultimate eCommerce Extension for Joomla",
       "createdAt": "2026-04-15T09:58:39.313Z",
-      "updatedAt": "2026-11-23T09:32:06.214Z"
+      "updatedAt": "2026-11-23T09:32:16.638Z"
     }
   ]
 }
