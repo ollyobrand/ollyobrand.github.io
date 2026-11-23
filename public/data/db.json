@@ -322,6 +322,13 @@
             "variant": "dark",
             "preview": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/171a3426-b395-4b98-b836-a7e7f0aa968d.svg",
             "svg": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/171a3426-b395-4b98-b836-a7e7f0aa968d.svg"
+          },
+          {
+            "id": "logo-1795428695560-0",
+            "name": "Icon",
+            "variant": "icon",
+            "preview": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/d7444215-a5c3-4335-951a-0c6fb62c91d2.svg",
+            "svg": "assets/logos/9d257920-c65f-4859-8f9b-2a408e9de164/d7444215-a5c3-4335-951a-0c6fb62c91d2.svg"
           }
         ],
         "colors": [
@@ -381,7 +388,7 @@
       "logoUrl": "assets/product-thumbnails/538d0b78-1b1a-4577-a2b1-cc31d4c14ec9.svg",
       "tagline": "The Ultimate eCommerce Extension for Joomla",
       "createdAt": "2026-04-15T09:58:39.313Z",
-      "updatedAt": "2026-11-23T10:07:57.602Z"
+      "updatedAt": "2026-11-23T10:11:37.008Z"
     }
   ]
 }
