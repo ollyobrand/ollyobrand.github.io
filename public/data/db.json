@@ -139,14 +139,6 @@
             "name": "Dark logo",
             "preview": "assets/tutor-lms/0da487b0-1e86-48ee-ab00-f42820072128.svg",
             "variant": "Dark"
-          },
-          {
-            "id": "logo-1776238902480-0",
-            "png": "assets/tutor-lms/5dbf46f1-6fac-4e0d-8654-9962776c8cca.svg",
-            "svg": "assets/tutor-lms/5dbf46f1-6fac-4e0d-8654-9962776c8cca.svg",
-            "name": "Icon",
-            "preview": "assets/tutor-lms/5dbf46f1-6fac-4e0d-8654-9962776c8cca.svg",
-            "variant": "Icon "
           }
         ],
         "colors": [
@@ -186,7 +178,7 @@
       "logoUrl": "assets/tutor-lms/77c8a678-a49f-4020-991e-6cc933d16049.svg",
       "tagline": "eLearning solution that works for you",
       "createdAt": "2026-04-15T07:41:04.135Z",
-      "updatedAt": "2026-11-23T11:37:21.772Z"
+      "updatedAt": "2026-11-23T11:37:39.235Z"
     },
     {
       "id": "b8d6ee11-a717-4d91-8371-370d763dd82c",
