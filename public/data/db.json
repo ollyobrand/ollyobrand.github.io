@@ -356,6 +356,11 @@
             "name": "Accent",
             "hex": "#F5DF6E",
             "rgb": "rgb(245, 223, 110)"
+          },
+          {
+            "name": "Accent",
+            "hex": "#FFA44A",
+            "rgb": "rgb(255, 164, 74)"
           }
         ],
         "favicon": {
@@ -368,7 +373,7 @@
       "logoUrl": "assets/easystore/4372f83d-a040-4bc0-a514-e1341921a7ed.svg",
       "tagline": "The Ultimate eCommerce Extension for Joomla",
       "createdAt": "2026-04-15T09:58:39.313Z",
-      "updatedAt": "2026-11-23T09:35:52.674Z"
+      "updatedAt": "2026-11-23T09:36:26.930Z"
     }
   ]
 }
