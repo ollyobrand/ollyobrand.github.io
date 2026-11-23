@@ -156,11 +156,6 @@
         ],
         "colors": [
           {
-            "hex": "#2151ED",
-            "rgb": "rgb(33, 81, 237)",
-            "name": "Primary"
-          },
-          {
             "hex": "#FFAA01",
             "rgb": "rgb(255, 170, 1)",
             "name": "Secondary"
@@ -191,7 +186,7 @@
       "logoUrl": "assets/tutor-lms/77c8a678-a49f-4020-991e-6cc933d16049.svg",
       "tagline": "eLearning solution that works for you",
       "createdAt": "2026-04-15T07:41:04.135Z",
-      "updatedAt": "2026-11-23T11:39:23.041Z"
+      "updatedAt": "2026-11-23T11:39:41.033Z"
     },
     {
       "id": "b8d6ee11-a717-4d91-8371-370d763dd82c",
