@@ -25,6 +25,20 @@
             "variant": "horizontal",
             "preview": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/9fefc0f5-f1d2-4605-b189-05c4e5ee6014.svg",
             "svg": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/9fefc0f5-f1d2-4605-b189-05c4e5ee6014.svg"
+          },
+          {
+            "id": "logo-1795435171970-0",
+            "name": "White",
+            "variant": "dark",
+            "preview": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/f0bf7a1f-05ac-4b43-96b4-459129315fd3.png",
+            "png": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/f0bf7a1f-05ac-4b43-96b4-459129315fd3.png"
+          },
+          {
+            "id": "logo-1795435172954-1",
+            "name": "White",
+            "variant": "dark",
+            "preview": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/038ac856-c58a-47b1-9b57-3f61e923cdab.svg",
+            "svg": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/038ac856-c58a-47b1-9b57-3f61e923cdab.svg"
           }
         ],
         "colors": [
@@ -44,7 +58,7 @@
       "logoUrl": "assets/joomshaper/8639c129-fa9f-40d7-97fc-15793eb9aa29.svg",
       "tagline": "Grow your business with the world’s #1 tools for Joomla!",
       "createdAt": "2026-04-15T07:10:44.079Z",
-      "updatedAt": "2026-11-23T11:59:15.551Z"
+      "updatedAt": "2026-11-23T11:59:34.785Z"
     },
     {
       "id": "632c3fb2-4468-4e91-8d57-82dc0c38ad43",
