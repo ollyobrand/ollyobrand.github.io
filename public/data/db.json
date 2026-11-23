@@ -267,13 +267,6 @@
             "svg": "assets/logos/f6be7331-6951-4256-8d0f-7c4602cdc1cb/7fe1b56b-71fe-4bed-a903-bb592c3e92f1.svg"
           },
           {
-            "id": "logo-1795428881983-0",
-            "name": "Dark",
-            "variant": "dark",
-            "preview": "assets/logos/f6be7331-6951-4256-8d0f-7c4602cdc1cb/d1e797c8-b0e8-4549-823c-df47e3c645bf.png",
-            "png": "assets/logos/f6be7331-6951-4256-8d0f-7c4602cdc1cb/d1e797c8-b0e8-4549-823c-df47e3c645bf.png"
-          },
-          {
             "id": "logo-1795428883215-1",
             "name": "Dark",
             "variant": "dark",
@@ -303,7 +296,7 @@
       "logoUrl": "assets/product-thumbnails/755d2f0a-3783-4d23-bb4f-7fc92d801b5f.svg",
       "tagline": "An extremely powerful drag & drop tool that lets you build sites visually and instantly.",
       "createdAt": "2026-04-15T08:05:16.424Z",
-      "updatedAt": "2026-11-23T10:19:03.297Z"
+      "updatedAt": "2026-11-23T10:19:14.274Z"
     },
     {
       "id": "9d257920-c65f-4859-8f9b-2a408e9de164",
