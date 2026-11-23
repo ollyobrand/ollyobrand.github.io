@@ -182,6 +182,22 @@
 }
 .sb-toast.show { opacity: 1; transform: translate(-50%, 0); }
 
+/* ---------- Phone: products as a two-column grid ---------- */
+@media (max-width: 899px) {
+  .sb-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-content: start; padding-top: 8px; }
+  .sb-list > :not(.sb-row) { grid-column: 1 / -1; }
+  .sb-row {
+    flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 18px; min-height: 148px; padding: 14px;
+    background: var(--sb-plate); border-color: var(--sb-hair); position: relative;
+  }
+  .sb-row .sb-icon { width: 52px; height: 52px; border-radius: 15px; background: var(--sb-paper); }
+  .sb-row .sb-icon img { width: 30px; height: 30px; }
+  .sb-row .sb-row-text { flex: none; width: 100%; }
+  .sb-row .sb-mono { font-size: 11px; line-height: 1.35; }
+  .sb-row > svg { display: none; }
+  .sb-row:active { transform: scale(0.98); }
+}
+
 /* ---------- Desktop split ---------- */
 @media (min-width: 900px) {
   .sb-shell { flex-direction: row; }
