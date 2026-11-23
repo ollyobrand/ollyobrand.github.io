@@ -283,11 +283,6 @@
         ],
         "colors": [
           {
-            "hex": "#0EE8B1",
-            "rgb": "rgb(14, 232, 177)",
-            "name": "Secondary"
-          },
-          {
             "name": "Primary",
             "hex": "#3858FA",
             "rgb": "rgb(56, 88, 250)"
@@ -303,7 +298,7 @@
       "logoUrl": "assets/product-thumbnails/755d2f0a-3783-4d23-bb4f-7fc92d801b5f.svg",
       "tagline": "An extremely powerful drag & drop tool that lets you build sites visually and instantly.",
       "createdAt": "2026-04-15T08:05:16.424Z",
-      "updatedAt": "2026-11-23T10:15:44.177Z"
+      "updatedAt": "2026-11-23T10:15:51.995Z"
     },
     {
       "id": "9d257920-c65f-4859-8f9b-2a408e9de164",
