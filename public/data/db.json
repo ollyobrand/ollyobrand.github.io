@@ -207,6 +207,20 @@
             "variant": "horizontal",
             "preview": "assets/logos/b8d6ee11-a717-4d91-8371-370d763dd82c/2d63d605-2451-4063-a994-038d7cbd5f37.svg",
             "svg": "assets/logos/b8d6ee11-a717-4d91-8371-370d763dd82c/2d63d605-2451-4063-a994-038d7cbd5f37.svg"
+          },
+          {
+            "id": "logo-1795430717634-0",
+            "name": "White",
+            "variant": "dark",
+            "preview": "assets/logos/b8d6ee11-a717-4d91-8371-370d763dd82c/873ccf0d-e3ae-4b44-89b0-f1dffa961efa.png",
+            "png": "assets/logos/b8d6ee11-a717-4d91-8371-370d763dd82c/873ccf0d-e3ae-4b44-89b0-f1dffa961efa.png"
+          },
+          {
+            "id": "logo-1795430718658-1",
+            "name": "White",
+            "variant": "dark",
+            "preview": "assets/logos/b8d6ee11-a717-4d91-8371-370d763dd82c/21027667-7274-4d76-9707-ef001d5c98bb.svg",
+            "svg": "assets/logos/b8d6ee11-a717-4d91-8371-370d763dd82c/21027667-7274-4d76-9707-ef001d5c98bb.svg"
           }
         ],
         "colors": [
@@ -225,7 +239,7 @@
       "logoUrl": "assets/kirki/4313f0d4-5006-48e7-a2ac-a5f98409a681.svg",
       "tagline": "No-Code Site Builder for WordPress",
       "createdAt": "2026-04-15T07:57:33.769Z",
-      "updatedAt": "2026-11-23T10:44:59.859Z"
+      "updatedAt": "2026-11-23T10:45:20.255Z"
     },
     {
       "id": "f6be7331-6951-4256-8d0f-7c4602cdc1cb",
