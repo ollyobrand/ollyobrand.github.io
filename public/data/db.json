@@ -11,7 +11,22 @@
       "id": "2fa4d66b-05d1-418f-83a3-aa52d208e1fb",
       "name": "JoomShaper",
       "assets": {
-        "logos": [],
+        "logos": [
+          {
+            "id": "logo-1795435137075-0",
+            "name": "Horizontal Logo",
+            "variant": "horizontal",
+            "preview": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/12273b19-5690-49cf-958d-217a34e2de81.png",
+            "png": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/12273b19-5690-49cf-958d-217a34e2de81.png"
+          },
+          {
+            "id": "logo-1795435138375-1",
+            "name": "Horizontal Logo",
+            "variant": "horizontal",
+            "preview": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/9fefc0f5-f1d2-4605-b189-05c4e5ee6014.svg",
+            "svg": "assets/logos/2fa4d66b-05d1-418f-83a3-aa52d208e1fb/9fefc0f5-f1d2-4605-b189-05c4e5ee6014.svg"
+          }
+        ],
         "colors": [
           {
             "hex": "#0E1DEC",
@@ -34,7 +49,7 @@
       "logoUrl": "assets/joomshaper/8639c129-fa9f-40d7-97fc-15793eb9aa29.svg",
       "tagline": "Grow your business with the world’s #1 tools for Joomla!",
       "createdAt": "2026-04-15T07:10:44.079Z",
-      "updatedAt": "2026-11-23T11:58:55.063Z"
+      "updatedAt": "2026-11-23T11:59:07.086Z"
     },
     {
       "id": "632c3fb2-4468-4e91-8d57-82dc0c38ad43",
