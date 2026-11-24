@@ -121,16 +121,12 @@
           "svg": "assets/favicons/632c3fb2-4468-4e91-8d57-82dc0c38ad43/9dcbba04-e741-47c5-b0d2-d31e43b03b1e.svg",
           "png": "assets/favicons/632c3fb2-4468-4e91-8d57-82dc0c38ad43/9dcbba04-e741-47c5-b0d2-d31e43b03b1e.svg",
           "ico": "assets/favicons/632c3fb2-4468-4e91-8d57-82dc0c38ad43/9dcbba04-e741-47c5-b0d2-d31e43b03b1e.svg"
-        },
-        "guidelines": {
-          "preview": "assets/guidelines/632c3fb2-4468-4e91-8d57-82dc0c38ad43/248b4d12-6f77-483d-b10a-f2f4aeb942b2.pdf",
-          "pdf": "assets/guidelines/632c3fb2-4468-4e91-8d57-82dc0c38ad43/248b4d12-6f77-483d-b10a-f2f4aeb942b2.pdf"
         }
       },
       "logoUrl": "assets/growfund/7580d925-22fb-4e0c-94c7-124e1d8e4f96.svg",
       "tagline": "The complete donation crowdfunding solution for WordPress",
       "createdAt": "2026-04-15T07:24:54.598Z",
-      "updatedAt": "2026-11-24T06:42:44.488Z"
+      "updatedAt": "2026-11-24T06:47:33.305Z"
     },
     {
       "id": "21278f71-59ee-4c33-87a7-3adabb8b4879",
