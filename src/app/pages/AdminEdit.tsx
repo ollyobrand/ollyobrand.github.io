@@ -12,6 +12,7 @@ import { extOf, normalHex, rgbString } from '../lib/brand';
 import { SessionExpiredError } from '../lib/auth';
 import { Color, Logo, Product } from '../types';
 import { Frame, useSheetKeys } from './FileSheet';
+import { isImagePath } from '../lib/pdfThumb';
 
 export interface AdminApi {
   /** Reload the product list from GitHub after a save. */
@@ -536,5 +537,68 @@ export function EditLogoDialog({ product, logoId, api, onClose }: { product: Pro
         </div>
       </form>
     </Frame>
+  );
+}
+
+// ---------- Guidelines thumbnail ----------
+
+/** Hover (or always, on touch) actions over the guidelines thumbnail: upload an image, open the editor, or remove it. */
+export function ThumbActions({ product, api }: { product: Product; api: AdminApi }) {
+  const g = product.assets.guidelines;
+  const input = useRef<HTMLInputElement>(null);
+  const [busy, setBusy] = useState(false);
+  const [armed, setArmed] = useState(false);
+  const timer = useRef<number>(0);
+  if (!g) return null;
+  const hasThumb = isImagePath(g.preview);
+
+  const upload = async (file: File) => {
+    setBusy(true);
+    await save(
+      api,
+      async () => {
+        const preview = await uploadFile(file, `guidelines/${product.id}`);
+        await updateProduct(product.id, (p) => ({ ...p, assets: { ...p.assets, guidelines: { ...p.assets.guidelines!, preview } } }), `Update guidelines thumbnail for ${product.name}`);
+      },
+      'Thumbnail saved',
+      "Couldn't save the thumbnail",
+    );
+    setBusy(false);
+  };
+
+  const remove = async () => {
+    if (!armed) {
+      setArmed(true);
+      window.clearTimeout(timer.current);
+      timer.current = window.setTimeout(() => setArmed(false), 3000);
+      return;
+    }
+    setBusy(true);
+    setArmed(false);
+    // The PDF stays; with no image the card shows a plain PDF tile.
+    await save(
+      api,
+      () => updateProduct(product.id, (p) => ({ ...p, assets: { ...p.assets, guidelines: { ...p.assets.guidelines!, preview: p.assets.guidelines!.pdf || p.assets.guidelines!.preview } } }), `Remove guidelines thumbnail from ${product.name}`),
+      'Thumbnail removed',
+      "Couldn't remove the thumbnail",
+    );
+    setBusy(false);
+  };
+
+  return (
+    <div className="sb-thumb-actions" role="group" aria-label="Thumbnail">
+      <input ref={input} type="file" accept="image/png,image/jpeg,image/webp" hidden onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ''; if (f) upload(f); }} />
+      <button type="button" className="sb-btn" onClick={() => input.current?.click()} disabled={busy}>
+        {busy ? <Loader2 size={16} className="sb-spin" /> : <Upload size={16} />} Upload
+      </button>
+      <button type="button" className="sb-btn" onClick={() => api.addGuidelines(product)} disabled={busy}>
+        <Pencil size={16} /> Edit
+      </button>
+      {hasThumb && (
+        <button type="button" className={`sb-btn${armed ? ' sb-danger armed' : ''}`} onClick={remove} disabled={busy}>
+          <Trash2 size={16} /> {armed ? 'Tap again' : 'Remove'}
+        </button>
+      )}
+    </div>
   );
 }
