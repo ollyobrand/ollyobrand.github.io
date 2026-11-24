@@ -5,7 +5,7 @@ import { arrayMove } from '@dnd-kit/sortable';
 import imgLogo from 'figma:asset/7efdf963b465ea840cf15b3e1ac80db6d73ce1bb.png';
 import { assetUrl, Database, deleteProduct, downloadFile, loadAdminDb, loadPublicDb } from '../lib/api';
 import { AdminSession, getSession, refreshIfNeeded, SessionExpiredError, signOut } from '../lib/auth';
-import { AddColour, AdminApi, ConfirmDelete, EditButton, EditColourDialog, EditLogoDialog, LogoDrop, moveColour, moveLogo, removeColour, removeLogo, removePart, SortItem, SortList } from './AdminEdit';
+import { AddColour, AdminApi, ConfirmDelete, EditButton, EditColourDialog, EditLogoDialog, LogoDrop, moveColour, moveLogo, removeColour, removeLogo, removePart, SortItem, SortList, ThumbActions } from './AdminEdit';
 import { CreateProductModal } from '../components/CreateProductModal';
 import { EditProductModal } from '../components/EditProductModal';
 import { AddFaviconModal } from '../components/AddFaviconModal';
@@ -417,11 +417,14 @@ function ProductView({ product: source, tab, onTab, onClose, toast, headingRef, 
           return (
             <div className="sb-grid">
               <div className="sb-asset">
-                {isImagePath(g.preview) ? (
-                  <div className="sb-plate"><img src={assetUrl(g.preview)} alt={`${product.name} brand guidelines`} /></div>
-                ) : (
-                  <div className="sb-plate sb-plate-pdf" role="img" aria-label={`${product.name} brand guidelines (PDF)`}><FileText size={28} /></div>
-                )}
+                <div className="sb-thumb-wrap">
+                  {isImagePath(g.preview) ? (
+                    <div className="sb-plate"><img src={assetUrl(g.preview)} alt={`${product.name} brand guidelines`} /></div>
+                  ) : (
+                    <div className="sb-plate sb-plate-pdf" role="img" aria-label={`${product.name} brand guidelines (PDF)`}><FileText size={28} /></div>
+                  )}
+                  {admin && <ThumbActions product={product} api={admin} />}
+                </div>
                 <div className="sb-asset-meta"><b>Brand guidelines</b><span className="sb-mono">PDF</span></div>
                 {g.pdf && (
                   <button className="sb-btn ghost" onClick={() => save(g.pdf!, `${base}-brand-guidelines.pdf`)}>

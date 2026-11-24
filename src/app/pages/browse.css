@@ -388,3 +388,15 @@ button.sb-opt[disabled] { opacity: 0.6; cursor: progress; }
 .sb-thumb { min-height: 160px; max-height: 280px; display: grid; place-items: center; text-align: center; padding: 12px; }
 .sb-thumb img { max-height: 256px; width: auto; max-width: 100%; border-radius: 6px; box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15); }
 .sb-plate-pdf { color: var(--sb-muted); display: grid; place-items: center; }
+
+/* ---------- Thumbnail actions (admin) ---------- */
+.sb-thumb-wrap { position: relative; }
+.sb-thumb-actions {
+  position: absolute; inset: auto 6px 6px 6px; z-index: 2; display: flex; flex-wrap: nowrap; justify-content: center; gap: 4px;
+  padding: 4px; border-radius: 14px; background: rgba(250, 250, 249, 0.92); border: 1px solid var(--sb-hair);
+  backdrop-filter: blur(6px); opacity: 0; transform: translateY(4px); pointer-events: none;
+  transition: opacity var(--sb-dur) var(--sb-ease), transform var(--sb-dur) var(--sb-ease);
+}
+.sb-thumb-actions .sb-btn { flex: 1 1 0; min-width: 0; padding: 0 6px; gap: 5px; font-size: 13px; white-space: nowrap; }
+.sb-thumb-wrap:hover .sb-thumb-actions, .sb-thumb-wrap:focus-within .sb-thumb-actions { opacity: 1; transform: none; pointer-events: auto; }
+@media (hover: none) { .sb-thumb-actions { opacity: 1; transform: none; pointer-events: auto; } }
