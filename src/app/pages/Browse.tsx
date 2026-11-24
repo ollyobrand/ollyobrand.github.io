@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { ChevronRight, Download, LogOut, Pencil, Plus, Search, Settings as SettingsIcon, X } from 'lucide-react';
+import { ChevronRight, Download, FileText, LogOut, Pencil, Plus, Search, Settings as SettingsIcon, X } from 'lucide-react';
 import { arrayMove } from '@dnd-kit/sortable';
 import imgLogo from 'figma:asset/7efdf963b465ea840cf15b3e1ac80db6d73ce1bb.png';
 import { assetUrl, Database, deleteProduct, downloadFile, loadAdminDb, loadPublicDb } from '../lib/api';
@@ -9,6 +9,7 @@ import { AddColour, AdminApi, ConfirmDelete, EditButton, EditColourDialog, EditL
 import { CreateProductModal } from '../components/CreateProductModal';
 import { EditProductModal } from '../components/EditProductModal';
 import { AddFaviconModal } from '../components/AddFaviconModal';
+import { isImagePath } from '../lib/pdfThumb';
 import { AddGuidelinesModal } from '../components/AddGuidelinesModal';
 import { Settings } from '../components/Settings';
 import { Toaster } from '../components/ui/sonner';
@@ -406,7 +407,7 @@ function ProductView({ product: source, tab, onTab, onClose, toast, headingRef, 
         {admin && (
           <div className="sb-adminrow">
             <button className="sb-btn ghost" onClick={() => admin.addGuidelines(product)}>
-              <Plus size={16} /> {product.assets.guidelines ? 'Replace guidelines PDF' : 'Add guidelines PDF'}
+              <Plus size={16} /> {product.assets.guidelines ? 'Edit guidelines PDF & thumbnail' : 'Add guidelines PDF'}
             </button>
             {product.assets.guidelines && <ConfirmDelete label="the guidelines" onConfirm={() => removePart(admin, product, 'guidelines')} />}
           </div>
@@ -416,7 +417,11 @@ function ProductView({ product: source, tab, onTab, onClose, toast, headingRef, 
           return (
             <div className="sb-grid">
               <div className="sb-asset">
-                {g.preview && <div className="sb-plate"><img src={assetUrl(g.preview)} alt={`${product.name} brand guidelines`} /></div>}
+                {isImagePath(g.preview) ? (
+                  <div className="sb-plate"><img src={assetUrl(g.preview)} alt={`${product.name} brand guidelines`} /></div>
+                ) : (
+                  <div className="sb-plate sb-plate-pdf" role="img" aria-label={`${product.name} brand guidelines (PDF)`}><FileText size={28} /></div>
+                )}
                 <div className="sb-asset-meta"><b>Brand guidelines</b><span className="sb-mono">PDF</span></div>
                 {g.pdf && (
                   <button className="sb-btn ghost" onClick={() => save(g.pdf!, `${base}-brand-guidelines.pdf`)}>
@@ -608,7 +613,7 @@ export function Browse({ admin = false }: { admin?: boolean }) {
         <>
           <EditProductModal isOpen={modal.kind === 'edit'} product={modal.product} onClose={() => setModal(null)} onSessionExpired={expire} onSuccess={async () => { setModal(null); await load(); }} />
           <AddFaviconModal isOpen={modal.kind === 'favicon'} productId={modal.product.id} onClose={() => setModal(null)} onSessionExpired={expire} onSuccess={() => load()} />
-          <AddGuidelinesModal isOpen={modal.kind === 'guidelines'} productId={modal.product.id} onClose={() => setModal(null)} onSessionExpired={expire} onSuccess={() => load()} />
+          {api && <AddGuidelinesModal isOpen={modal.kind === 'guidelines'} product={modal.product} api={api} onClose={() => setModal(null)} />}
         </>
       )}
       <Toaster />
